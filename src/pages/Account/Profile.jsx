@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import '../../css files/App.css'
 
 const Profile = () => {
@@ -11,10 +13,37 @@ const Profile = () => {
 
     const [password,setPassword]=useState("")
     const [newPassword,setNewPassword]=useState("")
+
+    // ---------- password field ----------
+    const [passInputType,setPassInputType] = useState("password")
+    const [passIcon,setPassIcon] =useState(faEyeSlash)
+    const [passInputType2,setPassInputType2] = useState("password")
+    const [passIcon2,setPassIcon2] =useState(faEyeSlash)
     
+    
+    function showPassword() {
+        if (passInputType == "password") {
+            setPassInputType("text")
+            setPassIcon(faEye);
+        } else {
+            setPassInputType("password")
+            setPassIcon(faEyeSlash);
+        }
+    }
+
+    function showPassword2() {
+        if (passInputType2 == "password") {
+            setPassInputType2("text")
+            setPassIcon2(faEye);
+        } else {
+            setPassInputType2("password")
+            setPassIcon2(faEyeSlash);
+        }
+    }
+    // ---------- password field ----------
     return ( 
         <React.Fragment>
-            <div className="h-screen bg-gray-1 flex justify-end items-start w-full p-[5vh] pr-10 overflow-hidden">
+            <div className="h-screen bg-gray-1 flex justify-center items-start w-full p-[5vh] pr-10 overflow-hidden">
                 {/* إدارة الملف الشخصي */}
                 <form className="w-[80%]">
                     <div className="rounded-t-lg py-3 text-xl text-center bg-blue-1 text-white">إدارة الملف الشخصي</div>
@@ -50,6 +79,28 @@ const Profile = () => {
                                     العنوان
                                 </label>
                             </div>
+                            <div className="hv-bc">
+                                {/* ----------------- */}
+                                <div className="relative userDataInput p-0">
+                                    <input type={passInputType} id="userPassword" className="userDataInput"/>
+                                    <FontAwesomeIcon onClick={showPassword} icon={passIcon} className="absolute top-[30%] left-4 cursor-pointer"/>
+                                </div>
+                                {/* ----------------- */}
+                                <label htmlFor="userPassword" className="userDataHeader">
+                                    كلمة المرور
+                                </label>
+                            </div>
+                            <div className="hv-bc">
+                                {/*  */}
+                                <div className="relative userDataInput p-0">
+                                    <input type={passInputType2} id="userNewPassword" className="userDataInput"/>
+                                    <FontAwesomeIcon onClick={showPassword2} icon={passIcon2} className="absolute top-[30%] left-4 cursor-pointer"/>
+                                </div>
+                                {/*  */}
+                                <label htmlFor="userNewPassword" className="userDataHeader">
+                                    كلمة المرور الجديدة
+                                </label>
+                            </div>
                         </div>
                         <div className="flex justify-end">
                             <button className="text-sm py-2 px-8 rounded bg-gray-1 text-black mr-5">
@@ -61,12 +112,6 @@ const Profile = () => {
                         </div>
                     </div>
                 </form>
-                {/* الخيارات او الخيارة هههههه */}
-                <div className="ml-3 shadow-md rounded-xl overflow-hidden">
-                    <button className="AccountOptions">الملف الشخصي</button>
-                    <hr />
-                    <button className="AccountOptions">تغيير كلمة المرور</button>
-                </div>
             </div>
         </React.Fragment>
      );

@@ -14,12 +14,12 @@
     .AccountOptions{
         @apply w-[20vw] p-3 text-lg text-end transition duration-[.4s] bg-white text-[#78727f] cursor-pointer focus:bg-blue-1 focus:text-white;
     }
-    /*  */
+    
     .userDataHeader{
-        @apply w-[20%] mb-14 text-lg text-right text-[#78727f] font-semibold;
+        @apply w-[20%] mb-14 text-lg text-right font-semibold text-[#78727f];
     }
     .userDataInput{
-        @apply mb-11 px-4 py-2 outline-none rounded-md w-[100%] text-right shadow-inner bg-white border border-[#dbdbdb];
+        @apply w-[100%] mb-11 px-4 h-10 outline-none rounded-md text-right shadow-inner bg-white border border-[#dbdbdb];
     }
     /* SignIn and SingUp page */
     .label{

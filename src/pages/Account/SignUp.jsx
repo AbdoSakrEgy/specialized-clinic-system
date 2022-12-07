@@ -6,6 +6,7 @@ import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from "react";
 
 const SignUp = () => {
+    // ---------- password field ----------
     const [passInputType,setPassInputType] = useState("password")
     const [passIcon,setPassIcon] =useState(faEyeSlash)
     const [passInputType2,setPassInputType2] = useState("password")
@@ -31,6 +32,7 @@ const SignUp = () => {
             setPassIcon2(faEyeSlash);
         }
     }
+    // ---------- password field ----------
     return ( 
         <React.Fragment>
             <div className="h-screen bg-gray-1 flex flex-col justify-center items-center w-full pb-40">
