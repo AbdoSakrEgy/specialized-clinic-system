@@ -31,7 +31,8 @@ const AppHeader = () => {
                 </div>
             </div>
             {/* -------navbar------- */}
-            <nav className="hv-bc py-5 px-10 shadow-md sticky top-0 bg-white">
+            <nav className="hv-bc py-5 px-10 shadow-md sticky-top bg-white">
+            {/*                                        sticky-top top-0 */}
                 <div className="logo hv-bc text-blue-2">
                     <FaStethoscope style={{fontSize:'30px'}} className="mr-3"/>
                     <div>Specialized Clinic System</div>

@@ -26,15 +26,15 @@ const Home = () => {
             </div> */}
             {/* ----------Sign---------- */}
             {/* Home sections */}
-            <div>
+            <div className="h-full">
                 {/* Home section 1 */}
                 <div
                     id="carouselDarkVariant"
-                    className="carousel slide carousel-fade carousel-dark relative"
+                    className="carousel slide carousel-fade relative w-full"
                     data-bs-ride="carousel"
                     >
                     {/*  Indicators */}
-                    <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                    {/* <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
                         <button
                         data-bs-target="#carouselDarkVariant"
                         data-bs-slide-to="0"
@@ -52,20 +52,20 @@ const Home = () => {
                         data-bs-slide-to="2"
                         aria-label="Slide 1"
                         ></button>
-                    </div>
+                    </div> */}
 
                     {/*  Inner */}
-                    <div className="carousel-inner relative w-full overflow-hidden">
+                    <div className="overflow-hidden carousel-inner relative w-full">
                         {/*  Single */}
                         <div className="carousel-item active relative float-left w-full h-[70vh]">
                         <img
                             src={require('../../Images/doctor1.jpg')}
-                            className="block w-full"
+                            className="overflow-hidden block w-full h-full"
                             alt="Motorbike Smoke"
                         />
-                        <div className="carousel-caption hidden md:block absolute text-center">
-                            <h5 className="text-xl">First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                        <div className="carousel-caption top-[40%] hidden md:block absolute text-left">
+                            <h5 className="text-4xl text-white">مقولة طبية</h5>
+                            <p className="text-white text-xl">بعض التفاصيل او الوصف</p>
                         </div>
                         </div>
 
@@ -73,25 +73,25 @@ const Home = () => {
                         <div className="carousel-item relative float-left w-full h-[70vh]">
                         <img
                             src={require('../../Images/doctor2.jpg')}
-                            className="block w-full"
+                            className="overflow-hidden block w-full h-full"
                             alt="Mountaintop"
                         />
-                        <div className="carousel-caption hidden md:block absolute text-center">
-                            <h5 className="text-xl">Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                        <div className="carousel-caption top-[40%] hidden md:block absolute text-right">
+                            <h5 className="text-4xl text-white">مقولة طبية</h5>
+                            <p className="text-white text-xl">بعض التفاصيل او الوصف</p>
                         </div>
                         </div>
 
                         {/*  Single */}
                         <div className="carousel-item relative float-left w-full h-[70vh]">
                         <img
-                            src={require('../../Images/doctor1.jpg')}
-                            className="block w-full"
+                            src={require('../../Images/doctor3.jpg')}
+                            className="overflow-hidden block w-full h-full"
                             alt="Woman Reading a Book"
                         />
-                        <div className="carousel-caption hidden md:block absolute text-center">
-                            <h5 className="text-xl">Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                        <div className="carousel-caption hidden top-[25%] md:block absolute text-center">
+                            <h5 className="text-4xl text-white">مقولة طبية</h5>
+                            <p className="text-white text-xl">بعض التفاصيل او الوصف</p>
                         </div>
                         </div>
                     </div>
@@ -118,7 +118,9 @@ const Home = () => {
                     </button>
                 </div>
                 {/* Home section 2 */}
-                
+                <div className="h-96">
+
+                </div>
             </div>
         </React.Fragment>
      );
