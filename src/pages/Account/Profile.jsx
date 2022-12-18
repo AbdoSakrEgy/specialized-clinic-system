@@ -80,12 +80,10 @@ const Profile = () => {
                                 </label>
                             </div>
                             <div className="hv-bc">
-                                {/* ----------------- */}
                                 <div className="relative userDataInput p-0">
                                     <input type={passInputType} id="userPassword" className="userDataInput"/>
                                     <FontAwesomeIcon onClick={showPassword} icon={passIcon} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
-                                {/* ----------------- */}
                                 <label htmlFor="userPassword" className="userDataHeader">
                                     كلمة المرور
                                 </label>

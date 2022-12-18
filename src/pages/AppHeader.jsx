@@ -12,22 +12,22 @@ const AppHeader = () => {
     return ( 
         <React.Fragment>
             {/* -------contact------- */}
-            <div className="hv-bc bg-blue-1 text-white py-5 px-10">
+            <div className="hv-bc bg-blue-1 text-white py-4 px-10">
                 <div className="flex justify-start">
                     <div className="time hv-bc">
-                        <FaClock style={{fontSize: '20px'}}/><p className="pl-2 pr-5">السبت-الخميس 9-5</p>
+                        <FaClock style={{fontSize: '15px'}}/><p style={{fontSize: '14px'}} className="pl-2 pr-5">السبت-الخميس 9-5</p>
                     </div>
                     <div className="phone hv-bc">
-                        <FaPhone style={{fontSize: '20px'}}/><p className="pl-2 pr-5">01007137667</p>
+                        <FaPhone style={{fontSize: '15px'}}/><p style={{fontSize: '14px'}} className="pl-2 pr-5">0100-7137-667</p>
                     </div>
                     <div className="email hv-bc">
-                        <FaEnvelope style={{fontSize: '20px'}}/><p className="pl-2 pr-5">email@gmail.com</p>
+                        <FaEnvelope style={{fontSize: '15px'}}/><p style={{fontSize: '14px'}} className="pl-2 pr-5">email@gmail.com</p>
                     </div>
                 </div>
                 <div className="hv-bc">
-                    <FaFacebookF style={{fontSize: '20px'}} className="ml-5"/>
-                    <FaLinkedin style={{fontSize: '20px'}} className="ml-5"/>
-                    <FaInstagram style={{fontSize: '20px'}} className="ml-5"/>
+                    <FaFacebookF style={{fontSize: '15px'}}className="ml-5"/>
+                    <FaLinkedin style={{fontSize: '15px'}}className="ml-5"/>
+                    <FaInstagram style={{fontSize: '15px'}}className="ml-5"/>
                 </div>
             </div>
             {/* -------navbar------- */}

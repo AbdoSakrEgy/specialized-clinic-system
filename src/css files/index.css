@@ -8,7 +8,7 @@
     }
     /* BandAid page */
     .BandAidCard{
-        @apply w-[20%] rounded-2xl cursor-pointer overflow-hidden transition duration-[.4s] border-4 border-[#e3e4e7] bg-[#e3e4e7] hover:bg-blue-1 hover:text-white hover:border-blue-1;
+        @apply w-[20%] rounded-2xl cursor-pointer overflow-hidden transition duration-[.4s] border-4 text-white border-gray-1 bg-blue-1 hover:bg-blue-1 hover:text-white hover:border-blue-1;
     }
     /* profile page */
     .AccountOptions{
@@ -29,3 +29,4 @@
         @apply bg-indigo-50 px-4 py-2 outline-none rounded-md w-full text-right;
     }
 }
+
