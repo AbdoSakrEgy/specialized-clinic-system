@@ -7,7 +7,7 @@ const BandAid = () => {
         <React.Fragment>
             <div className="flex flex-wrap p-5 justify-between bg-gray-1">
                 {/* ---------card breaking--------- */}
-                <div className="p-5 ml-20">
+                <div className="p-5 m-10">
                     <Link to="/bandAid/breaking">
                         <div className="BandAidCard w-full h-full">
                             <img className="w-[20vw]" src={require('../../Images/bone.png')} alt={"not found"} />
@@ -16,7 +16,7 @@ const BandAid = () => {
                     </Link>
                 </div>
                 {/* ---------card drowing--------- */}
-                <div className="p-5 ml-20">
+                <div className="p-5 m-10">
                     <Link to="/bandAid/drowing">
                         <div className="BandAidCard w-full h-full">
                             <img className="w-[20vw]" src={require('../../Images/drowing.jpg')} alt={"not found"} />
@@ -25,7 +25,7 @@ const BandAid = () => {
                     </Link>
                 </div>
                 {/* ---------card burn--------- */}
-                <div className="p-5 ml-20">
+                <div className="p-5 m-10">
                     <Link to="/bandAid/burn">
                         <div className="BandAidCard w-full h-full">
                             <img className="w-[20vw]" src={require('../../Images/burn.jpg')} alt={"not found"} />
@@ -34,7 +34,7 @@ const BandAid = () => {
                     </Link>
                 </div>
                 {/* ---------card headaches--------- */}
-                <div className="p-5 ml-20">
+                <div className="p-5 m-10">
                     <Link to="/bandAid/headaches">
                         <div className="BandAidCard w-full h-full">
                             <img className="w-[20vw]" src={require('../../Images/headaches2.jpg')} alt={"not found"} />

@@ -74,18 +74,6 @@ const AppHeader = () => {
                         }}
                     >إسعافات أولية</Link>
 
-                    <Link
-                        to="/"
-                        className="pl-10"
-                        style={{color:`${fourthNaveItemColor}`}}
-                        onClick={()=>{
-                            setFirstNaveItemColor("#78727f");
-                            setSecondNaveItemColor("#78727f");
-                            setThirdNaveItemColor("#78727f");
-                            setFourthNaveItemColor("#3b82f6");
-                        }}
-                    >إستشارة سريعة</Link>
-
                 </div>
                 <div>
                     {/* ------------- sign--------------- */}

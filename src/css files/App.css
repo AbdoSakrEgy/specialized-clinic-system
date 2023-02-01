@@ -18,6 +18,9 @@ input[type=date]::-webkit-datetime-edit-fields-wrapper {
     text-align: center;
 }
 /* Home page */
+html {
+    scroll-behavior: smooth;
+}
 .scrollDoctorsDiv::-webkit-scrollbar {
     height: .7vh;
 }

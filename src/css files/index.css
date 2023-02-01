@@ -6,9 +6,34 @@
     .hv-bc {
         @apply flex justify-between items-center;
     }
+    /* Home */
+    .DoctorInfoCard{
+        @apply h-fit flex justify-center w-[17rem] text-right ml-10;
+    }
+    .DoctorInfoCardDiv{
+        @apply rounded-lg shadow-lg bg-white w-[30vw] overflow-hidden;
+    }
+    .MedicalDepartmentCard{
+        @apply flex justify-center min-w-[20vw] text-center;
+    }
+    .AppiontmentForm{
+        @apply h-fit w-full flex flex-col items-end px-7 py-14 text-right shadow-2xl border-4 rounded-lg border-blue-1;
+    }
+    .AppiontmentInput{
+        @apply text-xl font-semibold px-5 outline-none mb-8 border-2 rounded-md border-gray-main w-full min-h-[4vh] ;
+    }
     /* BandAid page */
     .BandAidCard{
         @apply w-[20%] rounded-2xl cursor-pointer overflow-hidden transition duration-[.4s] border-4 text-white border-gray-1 bg-blue-1 hover:bg-blue-1 hover:text-white hover:border-blue-1;
+    }
+    .BandAid1Header{
+        @apply text-3xl font-bold text-center text-[#0067D6];
+    }
+    .BandAid2Header{
+        @apply text-2xl font-bold py-2 text-[#0067D6];
+    }
+    .BandAidText{
+        @apply mt-3 text-2xl text-[#434656];
     }
     /* profile page */
     .AccountOptions{

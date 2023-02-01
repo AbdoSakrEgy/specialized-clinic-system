@@ -127,17 +127,17 @@ const Home = () => {
                     </button> */}
                 </div>
 {/* Home section 1.1*/}
-                <div className=" mx-10 h-screen flex justify-between items-center">
+                <div className="mx-10 mb-32 flex justify-between items-center">
                     <div className="w-[50%]">
                         <img src={require('../../Images/landing page image.png')} alt="..." />
                     </div>
                     <div className="flex flex-col items-end text-gray-main">
-                        <div className="text-5xl font-semibold mb-14 text-black">حافظ علي لياقتك البدنية</div>
+                        <div className="text-5xl font-semibold mb-14 text-black">حافظ علي صحتك الجسدية والنفسية</div>
                         <div className="">"الوهم نصف الداء، والاطمئنان نصف الدواء، والصبر أول خطوات الشفاء"</div>
                         <div className="">فالإلتزام بالتعليمات الوقائية هي خير وسيلة لحماية نفسك</div>
                         <div className="mb-14">وأسرتك والمجتمع من خطر الأمراض اللتي تهدد حياتنا</div>
                         <button className="w-fit text-xl bg-transparentn text-blue-1 font-semibold  py-2 px-4 border border-blue-1  rounded hover:bg-blue-1 hover:text-white hover:border-transparent">
-                            احجز الآن
+                            <a href="#scrollflag">احجز الآن</a>
                         </button>
                     </div>
                 </div>
@@ -168,18 +168,15 @@ const Home = () => {
                         <div className="w-[60%]">
                             <img src={require('../../Images/test.png')} alt="..." />
                         </div>
-                        <div className="text-right pr-20">
+                        <div className="w-[40%] text-right pr-20">
                             <div className="text-5xl font-semibold mb-5">قصة عن المستشفي</div>
                             <div className="text-3xl font-medium mb-10 text-blue-1">وكيف وصلنا إلي هذه النقطة</div>
                             <div className="text-gray-main">
-                                شبيس ب منتكم  متمك كمنت م مكنتكم نكمن ممم
-                                <br/>شسيب شسيبيسبش شسيب شش  سيب
-                                <br/>شسيب شسيبيسبش شسيب ششسيب
-                                <br/>شسينبت شسيب صثهخ لا ؤشي شسيب شاؤ 
-                                <br/> شسيبلشسيل شسيلب شسي تكم نكمن ممم
-                                <br/>شسيب شسيبيسبش شسيب ششسيب
-                                <br/>شسيب شسيبيسبش شسيب ششسيب
-                                <br/>شسيب شسيبيسبش شسيب ششسيب
+                            فتحت أبواب المستشفى في 7 يوليو 2007 لاستقبال الأطفال المرضى بالمجان تماما بطاقة 30 سريرًا في المرحلة الأولى، تمهيدا لتشغيله فيما بعد بكامل طاقته البالغة 185 سريرا والمتوقّع ازديادها إلى 365 سريرا.
+                            <br />
+                            تقع المستشفى على مساحة 69 ألف متر مربع وبلغت تكلفة إنشاء المبنى والأماكن المحيطة به 300 مليون جنيه، وصمم المستشفى جوناثان بيلي المهندس الشهير في إنشاء التصميمات المستقبلية بالتعاون مع الخبرة الهندسية المصرية المجانية التي مزجت دون بهرجة بين المبنى الزجاجي الكروي الحداثي والأحجار الصلدة
+                            <br />
+                            وصممت النوافذ الزجاجية التي تحتوي على غاز خامل بغرض توفير الكهرباء والضوء ولتمكين الأطفال المصابين من التواصل مع العالم الخارجي لبث الطمأنينة نفسيًّا في قلوبهم. ويضم المستشفى مركزًا للعلاج النوويّ والإشعاعي والكيميائي وبنك الدم ومختبر الفيروسات ومعامل الجينات وتخزين الخلايا الجذعية والعيادات الخارجية وحجرات العمليات وأقسام الأشعة والمعامل والصيدلية.
                             </div>
                         </div>
                     </div>
@@ -189,7 +186,7 @@ const Home = () => {
                     <div className="text-center text-5xl font-semibold mb-16">الخدمات<span className="text-blue-1"> الطبية</span></div>
                     <div className="flex flex-nowrap justify-center items-center">
                         {/* التخصص الأول */}
-                        <div class="flex justify-center w-[20vw] text-center">
+                        <div class="MedicalDepartmentCard">
                             <div class="rounded-lg shadow-lg bg-white max-w-sm">
                                 {/* <a href="#!"> */}
                                     <img class="rounded-t-lg brightness-50" src={require('../../Images/ENT.jpg')} alt={"not found"}/>
@@ -204,7 +201,7 @@ const Home = () => {
                             </div>
                             </div>
                         {/* التخصص الثاني */}
-                        <div class="flex justify-center w-[20vw] text-center mx-32">
+                        <div class="MedicalDepartmentCard mx-32">
                             <div class="rounded-lg shadow-lg bg-white max-w-sm">
                                 {/* <a href="#!"> */}
                                     <img class="rounded-t-lg brightness-50" src={require('../../Images/Internal Medicine.jpg')} alt={"not found"}/>
@@ -219,7 +216,7 @@ const Home = () => {
                             </div>
                             </div>
                         {/* التخصص الثالث */}
-                        <div class="flex justify-center w-[20vw] text-center">
+                        <div class="MedicalDepartmentCard">
                             <div class="rounded-lg shadow-lg bg-white max-w-sm">
                                 {/* <a href="#!"> */}
                                     <img class="rounded-t-lg brightness-50" src={require('../../Images/dentist.jpg')} alt={"not found"}/>
@@ -236,16 +233,16 @@ const Home = () => {
                     </div>
                 </div>
 {/*Home section 5 */}
-                <div className="h-fit mx-10 mb-40" data-aos="flip-right">
+                <div className="h-fit mx-10 mb-40">
                     <div className="text-center">
                         <div className="text-5xl font-semibold mb-16">الطاقم <span className="text-blue-1">الطبي</span></div>
                     </div>
                     <div className="h-fit flex overflow-x-scroll scrollDoctorsDiv">
                         <div className="h-fit flex flex-nowrap justify-center py-5">
                             {/* الطبيب الأول */}
-                            <div class="h-fit flex justify-center w-[17rem] text-right ml-5">
-                                <div class="rounded-lg shadow-lg bg-white w-[30vw]">
-                                    <img class="rounded-t-lg w-full h-[15rem]" src={require('../../Images/d1.jpg')} alt={"not found"}/>
+                            <div class="DoctorInfoCard">
+                                <div class="DoctorInfoCardDiv">
+                                    <img class="w-full h-[15rem] brightness-50" src={require('../../Images/d1.jpg')} alt={"not found"}/>
                                     <div class="p-6">
                                         <div class="text-black font-bold text-xl mb-8">عبدالرحيم صقر</div>
                                         <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">أنف وأذن وحنجرة</span><br />
@@ -261,9 +258,9 @@ const Home = () => {
                                 </div>
                             </div>
                             {/* الطبيب الثاني */}
-                            <div class="h-fit flex justify-center w-[17rem] text-right ml-5">
-                                <div class="rounded-lg shadow-lg bg-white w-[30vw]">
-                                    <img class="rounded-t-lg w-full h-[15rem]" src={require('../../Images/d2.jpg')} alt={"not found"}/>
+                            <div class="DoctorInfoCard">
+                                <div class="DoctorInfoCardDiv">
+                                    <img class="w-full h-[15rem] brightness-50" src={require('../../Images/d2.jpg')} alt={"not found"}/>
                                     <div class="p-6">
                                         <div class="text-black font-bold text-xl mb-8">عبدالرحيم صقر</div>
                                         <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">باطنة</span><br />
@@ -279,9 +276,9 @@ const Home = () => {
                                 </div>
                             </div>
                             {/* الطبيب الثالث */}
-                            <div class="h-fit flex justify-center w-[17rem] text-right ml-5">
-                                <div class="rounded-lg shadow-lg bg-white w-[30vw]">
-                                    <img class="rounded-t-lg w-full h-[15rem]" src={require('../../Images/d3.jpg')} alt={"not found"}/>
+                            <div class="DoctorInfoCard">
+                                <div class="DoctorInfoCardDiv">
+                                    <img class="w-full h-[15rem] brightness-50" src={require('../../Images/d3.jpg')} alt={"not found"}/>
                                     <div class="p-6">
                                         <div class="text-black font-bold text-xl mb-8">عبدالرحيم صقر</div>
                                         <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">أسنان</span><br />
@@ -297,9 +294,9 @@ const Home = () => {
                                 </div>
                             </div>
                             {/* الطبيب الرابع */}
-                            <div class="h-fit flex justify-center w-[17rem] text-right ml-5">
-                                <div class="rounded-lg shadow-lg bg-white w-[30vw]">
-                                    <img class="rounded-t-lg w-full h-[15rem]" src={require('../../Images/d4.jpg')} alt={"not found"}/>
+                            <div class="DoctorInfoCard">
+                                <div class="DoctorInfoCardDiv">
+                                    <img class="w-full h-[15rem] brightness-50" src={require('../../Images/d4.jpg')} alt={"not found"}/>
                                     <div class="p-6">
                                         <div class="text-black font-bold text-xl mb-8">عبدالرحيم صقر</div>
                                         <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">أنف وأذن وحنجرة</span><br />
@@ -315,9 +312,9 @@ const Home = () => {
                                 </div>
                             </div>
                             {/* الطبيب الخامس */}
-                            <div class="h-fit flex justify-center w-[17rem] text-right ml-5">
-                                <div class="rounded-lg shadow-lg bg-white w-[30vw]">
-                                    <img class="rounded-t-lg w-full h-[15rem]" src={require('../../Images/d5.jpg')} alt={"not found"}/>
+                            <div class="DoctorInfoCard">
+                                <div class="DoctorInfoCardDiv">
+                                    <img class="w-full h-[15rem] brightness-50" src={require('../../Images/d5.jpg')} alt={"not found"}/>
                                     <div class="p-6">
                                         <div class="text-black font-bold text-xl mb-8">عبدالرحيم صقر</div>
                                         <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">باطنة</span><br />
@@ -333,9 +330,9 @@ const Home = () => {
                                 </div>
                             </div>
                             {/* الطبيب السادس */}
-                            <div class="h-fit flex justify-center w-[17rem] text-right ml-5">
-                                <div class="rounded-lg shadow-lg bg-white w-[30vw]">
-                                    <img class="rounded-t-lg w-full h-[15rem]" src={require('../../Images/d1.jpg')} alt={"not found"}/>
+                            <div class="DoctorInfoCard">
+                                <div class="DoctorInfoCardDiv">
+                                    <img class="w-full h-[15rem] brightness-50" src={require('../../Images/d1.jpg')} alt={"not found"}/>
                                     <div class="p-6">
                                         <div class="text-black font-bold text-xl mb-8">عبدالرحيم صقر</div>
                                         <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">أسنان</span><br />
@@ -353,6 +350,80 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+{/* Home section 6 */}
+                <div className="h-fit mx-10 mb-40" id="scrollflag">
+                    <div className="text-center">
+                        <div className="text-5xl font-semibold mb-16">احجز <span className="text-blue-1">موعدك</span></div>
+                    </div>
+                    <div className="flex justify-center items-center">
+                        <div className="w-1/2">
+                            <img src={require("../../Images/Appointment.png")} alt="..." />
+                        </div>
+                        <div className="h-fit w-1/2">
+                            <form action="" className="AppiontmentForm">
+
+                                <div className="w-full">
+                                    <div className="mb-1 font-semibold">اسم المريض</div>
+                                    <input type="text" className="AppiontmentInput text-right" />
+                                </div>
+
+                                <div className="w-full">
+                                    <div className="mb-1 font-semibold">التخصص</div>
+                                    <select name="available time" className="AppiontmentInput">
+                                        <option value="" selected hidden>---</option>
+                                        <option value="">أسنان</option>
+                                        <option value="">باطنة</option>
+                                        <option value="">أنف وأذن وحنجرة</option>
+                                    </select>
+                                </div>
+
+                                <div className="w-full">
+                                    <div className="mb-1 font-semibold"> الطبيب</div>
+                                    <select name="available time" className="AppiontmentInput">
+                                        <option value="" selected hidden>---</option>
+                                        <option value="">عبدالرحيم صقر</option>
+                                        <option value="">عبدالرحيم صقر</option>
+                                        <option value="">عبدالرحيم صقر</option>
+                                    </select>
+                                </div>
+                                
+                                <div className="w-full flex justify-between items-start">
+                                    <div className="w-full mr-7">
+                                        <div className="mb-1 font-semibold">الأوقات المتاحة</div>
+                                        <select name="available time" className="AppiontmentInput">
+                                            <option value="" selected hidden>---</option>
+                                            <option value="09:00 AM">09:00 AM</option>
+                                            <option value="09:30 AM">09:30 AM</option>
+                                            <option value="10:00 AM">10:00 AM</option>
+                                            <option value="10:30 AM">10:30 AM</option>
+                                        </select>
+                                    </div>
+                                    <div className="w-full">
+                                        <div className="mb-1 font-semibold">تاريخ الموعد</div>
+                                        <input type="date" className="AppiontmentInput" />
+                                    </div>
+                                </div>
+
+                                <div className="flex justify-end items-center  mt-10">
+                                    {/* <button className="mr-5 text-xl bg-transparentn text-gray-main py-2 px-4 ">
+                                        إلغاء
+                                    </button> */}
+                                    <input type="reset" value="إلغاء" className="cursor-pointer mr-5 text-xl"/>
+                                    <button className="text-2xl min-w-[10vw] py-2 px-4 rounded shadow-md bg-blue-1 text-white">
+                                        احجز الآن
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+{/* Home section 7 */}
+                <footer className="text-center bg-[#f1f8f6]">
+                    <div className="text-xl p-7">
+                        <span className="">© 2022 Copyright: </span>
+                        <a href="#" className="font-bold text-blue-1">عبدالرحيم السيد صقر</a>
+                    </div>
+                </footer>
             </div>
         </React.Fragment>
      );
