@@ -5,6 +5,7 @@ import '../../css files/App.css'
 const BandAid = () => {
     return ( 
         <React.Fragment>
+            <div className="text-5xl text-center pt-7 pb-3 bg-gray-1">الإسعافات <span className="text-blue-1">الأولية</span></div>
             <div className="flex flex-wrap p-5 justify-between bg-gray-1">
                 {/* ---------card breaking--------- */}
                 <div className="p-5 m-10">

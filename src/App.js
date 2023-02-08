@@ -1,5 +1,5 @@
 import React from 'react';
-import AppHeader from './pages/AppHeader';
+import AppHeader from './pages/AppHeader/AppHeader';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home/Home';
 
@@ -12,6 +12,7 @@ import Headaches from './pages/BandAid/headaches';
 import SignUp from './pages/Account/SignUp';
 import SignIn from './pages/Account/SignIn';
 import Profile from './pages/Account/Profile';
+import VisitsHistory from './pages/visits history/VisitsHistory';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/" element={<AppHeader />}>
             <Route index element={<Home/>} />
             
+            <Route path='/VisitsHistory' element={<VisitsHistory/>}/>
+
             <Route path='/bandAid' element={<BandAid/>} />
             <Route path='/bandAid/breaking' element={<Breaking/>} />
             <Route path='/bandAid/drowing' element={<Drowing/>} />

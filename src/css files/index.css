@@ -20,7 +20,7 @@
         @apply h-fit w-full flex flex-col items-end px-7 py-14 text-right shadow-2xl border-4 rounded-lg border-blue-1;
     }
     .AppiontmentInput{
-        @apply text-xl font-semibold px-5 outline-none mb-8 border-2 rounded-md border-gray-main w-full min-h-[4vh] ;
+        @apply text-xl font-semibold px-5 outline-none mb-8 border-2 rounded-md text-right border-gray-main w-full min-h-[4vh] ;
     }
     /* BandAid page */
     .BandAidCard{
@@ -52,6 +52,13 @@
     }
     .ourInput{
         @apply bg-indigo-50 px-4 py-2 outline-none rounded-md w-full text-right;
+    }
+    /* appointments table */
+    .tdStyle{
+        @apply px-6 py-4 whitespace-nowrap text-right;
+    }
+    .thStyle{
+        @apply px-6 py-4 text-right;
     }
 }
 

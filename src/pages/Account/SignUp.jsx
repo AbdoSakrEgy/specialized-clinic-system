@@ -32,7 +32,39 @@ const SignUp = () => {
             setPassIcon2(faEyeSlash);
         }
     }
-    // ---------- password field ----------
+    // ---------- data ----------
+    const [username,setUsername]=useState("");
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const [confirmPassword,setConfirmPassword]=useState("");
+    
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        console.log(username);
+        console.log(email);
+        console.log(password);
+        console.log(confirmPassword);
+    }
+    const validate =(values)=>{
+        const errors={};
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if(!values.username){
+            errors.username="Username is required!";
+        }
+        if(!values.email){
+            errors.email="Email is required!";
+        }else if(!regex.test(values.email)){
+            errors.email="This is not a valid email format!";
+        }
+        if(!values.password){
+            errors.password="Password is required!";
+        }
+        if(!values.confirmPassword){
+            errors.confirmPassword="ConfirmPassword is required!"
+        }
+        return errors;
+    }
+
     return ( 
         <React.Fragment>
             <div className="h-screen bg-gray-1 flex flex-col justify-center items-center w-full pb-40">
@@ -42,29 +74,50 @@ const SignUp = () => {
                             <h1 className="text-center text-2xl font-semibold text-gray-600">إنشاء حساب</h1>
                             <div>
                                 <label className="label">اسم المستخدم</label>
-                                <input type="text" className="ourInput" />
+                                <input
+                                    type="text"
+                                    className="ourInput"
+                                    value={username}
+                                    onChange={(e)=>{setUsername(e.target.value)}}
+                                />
+                                <div className="text-right">error message</div>
                             </div>
                             <div>
                                 <label className="label">البريد الإلكتروني</label>
-                                <input type="email" className="ourInput" />
+                                <input
+                                    type="email"
+                                    className="ourInput"
+                                    value={email}
+                                    onChange={(e)=>{setEmail(e.target.value)}}
+                                />
                             </div>
                             <div>
                                 <label className="label">كلمة المرور</label>
                                 <div className="relative">
-                                    <input type={passInputType} className="ourInput"/>
+                                    <input
+                                        type={passInputType}
+                                        className="ourInput"
+                                        value={password}
+                                        onChange={(e)=>{setPassword(e.target.value)}}
+                                     />
                                     <FontAwesomeIcon onClick={showPassword} icon={passIcon} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
                             </div>
                             <div>
                                 <label className="label">تأكيد كلمة المرور</label>
                                 <div className="relative">
-                                    <input type={passInputType2} className="ourInput"/>
+                                    <input
+                                        type={passInputType2}
+                                        className="ourInput"
+                                        value={confirmPassword}
+                                        onChange={(e)=>{setConfirmPassword(e.target.value)}}
+                                    />
                                     <FontAwesomeIcon onClick={showPassword2} icon={passIcon2} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
                             </div>
                         </div>
                         <Link to="/profile">
-                            <button className="mt-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide">إنشاء حساب</button>
+                            <button onClick={handleSubmit} className="mt-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide">إنشاء حساب</button>
                         </Link>
                     </div>
                 </form>
