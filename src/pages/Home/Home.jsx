@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from "react";
 import 'tw-elements';
-import { Link } from "react-scroll";
 import AppointmentSection from "./AppointmentSection";
 import DoctorsInfoSection from "./DoctorsInfoSection";
 import DepartmentsInfoSection from "./DepartmentsInfoSection";
 import AboutUsSection from "./AboutUsSection";
 import FooterSection from "./FooterSection";
 import Header from "./Header";
+import BandAid from "../BandAid/BandAid";
 
 export default function Home () {
 
@@ -43,11 +43,12 @@ export default function Home () {
 {/* Home section 5 */}
                 <AppointmentSection/>
 {/* Home section 6 */}
-                <AboutUsSection/>
+                <BandAid/>
 {/* Home section 7 */}
+                <AboutUsSection/>
+{/* Home section 8 */}
                 <FooterSection/>
             </div>
         </React.Fragment>
      );
 }
- 

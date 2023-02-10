@@ -22,31 +22,40 @@ const AppHeader = () => {
                 </Link>
                 <div className="text-lg font-bold text-[#78727f]" id="myDIV">
 
-                    <Link2 to="AboutUs" className="pl-10">
+                    <Link2 to="AboutUs" className="pl-10" smooth={true} duration={100} spy={true} offset={-200}>
                         <Link to="/">
                             <div className="inline-block">من نحن</div>
                         </Link>
                     </Link2>
 
-                    <Link to="/bandAid" className="pl-10">
-                        <div className="inline-block">الإسعافات الأولية</div>
-                    </Link>
+                    <Link2 to="BandAidSection" className="pl-10" smooth={true} duration={100} spy={true} offset={-200}>
+                        <Link to="/">
+                            <div className="inline-block">الإسعافات الأولية</div>
+                        </Link>
+                    </Link2>
 
-                    <Link2 to="MedicalStaff" className="pl-10">
+                    <Link2 to="AppointmentSection" className="pl-10" smooth={true} duration={100} spy={true} offset={-200}>
+                        <Link to="/">
+                            <div className="inline-block">الحجز</div>
+                        </Link>
+                    </Link2>
+
+                    <Link2 to="MedicalStaff" className="pl-10" smooth={true} duration={100} spy={true} offset={-200}>
                         <Link to="/">
                             <div className="inline-block">الطاقم الطبي</div>
                         </Link>
                     </Link2>
 
-                    <Link2 to="MedicalServices" className="pl-10">
+                    <Link2 to="MedicalServices" className="pl-10" smooth={true} duration={100} spy={true} offset={-200}>
                         <Link to="/">
                             <div className="inline-block">الخدمات الطبية</div>
                         </Link>
                     </Link2>
-
-                    <Link to="/" className="pl-10">
-                        <div className="inline-block">الصفحةالرئيسية</div>
-                    </Link>
+                    <Link2 to="HeaderSection" className="pl-10 active:bg-blue-1" activeClass="active" smooth={true} duration={100} spy={true} offset={-200}>
+                        <Link to="/">
+                            <div className="inline-block">الصفحةالرئيسية</div>
+                        </Link>
+                    </Link2>
                 </div>
                 <div>
                     {/* ------------- sign--------------- */}
@@ -61,7 +70,9 @@ const AppHeader = () => {
                         </button>
                     </Link>
                     {/* ------------- profile avatar --------------- */}
-                    {/* <Avatar/> */}
+                </div>
+                <div>
+                    <Avatar/>
                 </div>
             </nav>
             {/* -------outlet------- */}

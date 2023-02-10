@@ -25,7 +25,7 @@ export default function AppointmentSection () {
     }
     return(
         <React.Fragment>
-            <div className="h-fit mx-10 mb-40" id="scrollflag">
+            <div className="h-fit mx-10 mb-40" id="AppointmentSection">
                 <div className="text-center">
                     <div className="text-5xl font-semibold mb-16">احجز <span className="text-blue-1">موعدك</span></div>
                 </div>

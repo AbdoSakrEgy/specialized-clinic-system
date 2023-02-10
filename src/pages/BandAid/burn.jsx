@@ -3,7 +3,7 @@ import React from "react";
 const Burn = () => {
     return ( 
         <React.Fragment>
-           <div className="text-right p-10">
+           <div className="text-right p-10 bg-gray-1">
                 <div className="BandAid1Header">​​​الإسعافات الأولية للحروق</div>
 
                 <div className="mt-10">

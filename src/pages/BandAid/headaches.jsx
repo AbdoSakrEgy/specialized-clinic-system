@@ -3,7 +3,7 @@ import React from "react";
 const Headaches = () => {
     return ( 
         <React.Fragment>
-            <div className="text-right p-10">
+            <div className="text-right p-10 bg-gray-1">
                 <div className="BandAid1Header">إصابات الرأس</div>
 
                 <div className="mt-10">

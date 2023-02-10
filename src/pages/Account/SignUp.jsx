@@ -33,36 +33,57 @@ const SignUp = () => {
         }
     }
     // ---------- data ----------
-    const [username,setUsername]=useState("");
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
-    const [confirmPassword,setConfirmPassword]=useState("");
-    
+    const [username,setUsername]=useState(null);
+    const [email,setEmail]=useState(null);
+    const [password,setPassword]=useState(null);
+    const [confirmPassword,setConfirmPassword]=useState(null);
+
+    const [usernameErrorMessage,setUsernameErrorMessage]=useState(null);
+    const [emailErrorMessage,setEmailErrorMessage]=useState(null);
+    const [passwordErrorMessage,setPasswordErrorMessage]=useState(null);
+    const [confirmPasswordErrorMessage,setConfirmPasswordErrorMessage]=useState(null);
+
+
     const handleSubmit=(e)=>{
         e.preventDefault();
-        console.log(username);
-        console.log(email);
-        console.log(password);
-        console.log(confirmPassword);
+        validate();
     }
-    const validate =(values)=>{
-        const errors={};
+    const validate =()=>{
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if(!values.username){
-            errors.username="Username is required!";
+        if(!username){
+            setUsernameErrorMessage("!اسم المستخدم مطلوب");
+        }else if(username.length>15){
+            setUsernameErrorMessage("!يجب ألا يزيد اسم المستخدم عن 15 حروف");
+        }else{
+            setUsernameErrorMessage(null);
         }
-        if(!values.email){
-            errors.email="Email is required!";
-        }else if(!regex.test(values.email)){
-            errors.email="This is not a valid email format!";
+        
+        if(!email){
+            setEmailErrorMessage("!البريد الإلكتروني مطلوب");
+        }else if(!regex.test(email)){
+            setEmailErrorMessage("!صيغة الايميل غير صحيحة");
+        }else{
+            setEmailErrorMessage(null);
         }
-        if(!values.password){
-            errors.password="Password is required!";
+
+        if(!password){
+            setPasswordErrorMessage("!كلمة المرور مطلوبة");
+        }else if(password.length>10){
+            setPasswordErrorMessage("!يجب ألا تزيد كلمة المرور عن 10 حروف");
+        }else if(password.length<4){
+            setPasswordErrorMessage("!يجب ألا تقل كلمة المرور عن 4 حروف");
+        }else{
+            setPasswordErrorMessage(null);
         }
-        if(!values.confirmPassword){
-            errors.confirmPassword="ConfirmPassword is required!"
+
+        if(!confirmPassword){
+            setConfirmPasswordErrorMessage("!كلمة المرور مطلوبة");
+        }else if(confirmPassword!=password){
+            setConfirmPasswordErrorMessage("!كلمة المرور غير متطابقة");
         }
-        return errors;
+        else{
+            setConfirmPasswordErrorMessage(null);
+        }
     }
 
     return ( 
@@ -80,7 +101,7 @@ const SignUp = () => {
                                     value={username}
                                     onChange={(e)=>{setUsername(e.target.value)}}
                                 />
-                                <div className="text-right">error message</div>
+                                <div className="text-right text-red-600">{usernameErrorMessage}</div>
                             </div>
                             <div>
                                 <label className="label">البريد الإلكتروني</label>
@@ -90,6 +111,7 @@ const SignUp = () => {
                                     value={email}
                                     onChange={(e)=>{setEmail(e.target.value)}}
                                 />
+                                <div className="text-right text-red-600">{emailErrorMessage}</div>
                             </div>
                             <div>
                                 <label className="label">كلمة المرور</label>
@@ -100,6 +122,7 @@ const SignUp = () => {
                                         value={password}
                                         onChange={(e)=>{setPassword(e.target.value)}}
                                      />
+                                     <div className="text-right text-red-600">{passwordErrorMessage}</div>
                                     <FontAwesomeIcon onClick={showPassword} icon={passIcon} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
                             </div>
@@ -112,6 +135,7 @@ const SignUp = () => {
                                         value={confirmPassword}
                                         onChange={(e)=>{setConfirmPassword(e.target.value)}}
                                     />
+                                    <div className="text-right text-red-600">{confirmPasswordErrorMessage}</div>
                                     <FontAwesomeIcon onClick={showPassword2} icon={passIcon2} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
                             </div>

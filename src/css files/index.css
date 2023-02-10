@@ -24,7 +24,7 @@
     }
     /* BandAid page */
     .BandAidCard{
-        @apply w-[20%] rounded-2xl cursor-pointer overflow-hidden transition duration-[.4s] border-4 text-white border-gray-1 bg-blue-1 hover:bg-blue-1 hover:text-white hover:border-blue-1;
+        @apply w-[20%] rounded-2xl cursor-pointer overflow-hidden transition duration-[.4s] border-4 text-white border-blue-1 bg-blue-1 hover:bg-blue-2 hover:border-blue-2 shadow-2xl;
     }
     .BandAid1Header{
         @apply text-3xl font-bold text-center text-[#0067D6];
@@ -41,10 +41,10 @@
     }
     
     .userDataHeader{
-        @apply w-[20%] mb-14 text-lg text-right font-semibold text-[#78727f];
+        @apply w-[20%] text-lg text-right font-semibold text-[#78727f];
     }
     .userDataInput{
-        @apply w-[100%] mb-11 px-4 h-10 outline-none rounded-md text-right shadow-inner bg-white border border-[#dbdbdb];
+        @apply w-[100%] px-4 h-10 outline-none rounded-md text-right shadow-inner bg-white border border-[#dbdbdb];
     }
     /* SignIn and SingUp page */
     .label{

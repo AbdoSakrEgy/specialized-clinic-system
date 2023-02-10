@@ -3,7 +3,7 @@ import React from "react";
 const Breaking = () => {
     return ( 
         <React.Fragment>
-            <div className="text-right p-10">
+            <div className="text-right p-10 bg-gray-1">
                 <div className="BandAid1Header">كسور العظام</div>
 
                 <div className="mt-10">

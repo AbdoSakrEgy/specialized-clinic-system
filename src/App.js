@@ -24,7 +24,6 @@ function App() {
             
             <Route path='/VisitsHistory' element={<VisitsHistory/>}/>
 
-            <Route path='/bandAid' element={<BandAid/>} />
             <Route path='/bandAid/breaking' element={<Breaking/>} />
             <Route path='/bandAid/drowing' element={<Drowing/>} />
             <Route path='/bandAid/burn' element={<Burn/>} />
