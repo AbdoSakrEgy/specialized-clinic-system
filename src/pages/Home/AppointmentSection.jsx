@@ -48,8 +48,8 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">إختر التخصص</div>
-                                <select name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDepartment(e.target.value)}}>
-                                    <option value="" selected hidden></option>
+                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDepartment(e.target.value)}}>
+                                    <option value=" " hidden></option>
                                     <option value="أسنان">أسنان</option>
                                     <option value="باطنة">باطنة</option>
                                     <option value="أنف وأذن وحنجرة">أنف وأذن وحنجرة</option>
@@ -58,8 +58,8 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">إختر الطبيب</div>
-                                <select name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDoctor(e.target.value)}}>
-                                    <option value="" selected hidden></option>
+                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDoctor(e.target.value)}}>
+                                    <option value=" " hidden></option>
                                     <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
                                     <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
                                     <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
@@ -68,8 +68,8 @@ export default function AppointmentSection () {
                             
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">نوع الكشف</div>
-                                <select name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDetectionType(e.target.value)}}>
-                                    <option value="" selected hidden></option>
+                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDetectionType(e.target.value)}}>
+                                    <option value=" " hidden></option>
                                     <option value="كشف جديد">كشف جديد</option>
                                     <option value="إعادة كشف">إعادة كشف</option>
                                 </select>
@@ -78,8 +78,8 @@ export default function AppointmentSection () {
                             <div className="w-full flex justify-between items-start">
                                 <div className="w-full mr-7">
                                     <div className="mb-1 font-semibold">الأوقات المتاحة</div>
-                                    <select name="available time" className="AppiontmentInput" onChange={(e)=>{setTheAvailableTime(e.target.value)}}>
-                                        <option value="" selected hidden></option>
+                                    <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setTheAvailableTime(e.target.value)}}>
+                                        <option value=" " hidden></option>
                                         <option value="09:00 AM">09:00 AM</option>
                                         <option value="09:30 AM">09:30 AM</option>
                                         <option value="10:00 AM">10:00 AM</option>
@@ -94,8 +94,8 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">طريقة الدفع</div>
-                                <select name="available time" className="AppiontmentInput" onChange={(e)=>{setPaymentWay(e.target.value)}}>
-                                    <option value="" selected hidden></option>
+                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setPaymentWay(e.target.value)}}>
+                                    <option value=" " hidden></option>
                                     <option value="عند الطبيب">عند الطبيب</option>
                                 </select>
                             </div>

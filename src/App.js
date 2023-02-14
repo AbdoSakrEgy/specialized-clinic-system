@@ -3,7 +3,6 @@ import AppHeader from './pages/AppHeader/AppHeader';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home/Home';
 
-import BandAid from './pages/BandAid/BandAid';
 import Breaking from './pages/BandAid/breaking';
 import Drowing from './pages/BandAid/drowing';
 import Burn from './pages/BandAid/burn';

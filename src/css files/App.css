@@ -2,6 +2,9 @@
 body{
     font-family: 'Cairo', sans-serif;
 }
+html{
+    scroll-behavior: smooth;
+    }
 /* BandAid page */
 .hoverOnCard:hover{
     background-color: #4d93e9;
@@ -36,6 +39,9 @@ html {
     border-radius: 10px;
     background: #3b82f6; 
 }
-
+/* NavBar page */
+.nav-item.active{
+    border-bottom: 3px solid #3b82f6;;
+}
 
 

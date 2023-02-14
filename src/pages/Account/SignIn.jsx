@@ -41,10 +41,10 @@ const SignIn = () => {
 
         if(!password){
             setPasswordErrorMessage("!كلمة المرور مطلوبة");
-        }else if(password.length>10){
-            setPasswordErrorMessage("!يجب ألا تزيد كلمة المرور عن 10 حروف");
         }else if(password.length<4){
-            setPasswordErrorMessage("!يجب ألا تقل كلمة المرور عن 4 حروف");
+            setPasswordErrorMessage("!يجب أن تزيد كلمة المرور عن 4 حروف");
+        }else if(password.length>10){
+            setPasswordErrorMessage("!يجب أن تقل كلمة المرور عن 10 حروف");
         }else{
             setPasswordErrorMessage(null);
         }
@@ -88,7 +88,7 @@ const SignIn = () => {
                         <Link to="/profile">
                             <button
                                 className="my-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide"
-                                // onClick={handleSubmit}
+                                onClick={handleSubmit}
                             >تسجيل الدخول</button>
                         </Link>
                         <p className="text-right text-sm cursor-pointer text-blue-1">هل نسيت كلمة المرور؟</p>
