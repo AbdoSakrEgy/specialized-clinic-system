@@ -1,0 +1,11 @@
+{
+    "doctors":[
+        {
+            "id":0,
+            "name":"Abdel Raheem Sakr",
+            "department":"أسنان",
+            "minimum number of patients":2000,
+            "years of practical experience":12
+        }
+    ]
+}

@@ -33,10 +33,10 @@ const SignUp = () => {
         }
     }
     // ---------- data ----------
-    const [username,setUsername]=useState(null);
-    const [email,setEmail]=useState(null);
-    const [password,setPassword]=useState(null);
-    const [confirmPassword,setConfirmPassword]=useState(null);
+    const [username,setUsername]=useState("");
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const [confirmPassword,setConfirmPassword]=useState("");
 
     const [usernameErrorMessage,setUsernameErrorMessage]=useState(null);
     const [emailErrorMessage,setEmailErrorMessage]=useState(null);

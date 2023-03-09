@@ -8,61 +8,15 @@ import FooterSection from "./FooterSection";
 import Header from "./Header";
 import BandAid from "../BandAid/BandAid";
 import axios from "axios";
+import LoginTest from "../Account/LoginTest/LoginTest";
+import AsyncTest from "../Account/AsyncTest/AsyncTest";
 
 export default function Home () {
-    const [data,setData]=useState(null);
-    // useEffect(()=>{
-    //     axios({
-    //         method:'post',
-    //         baseURL:'http://localhost:4000',
-    //         url:'/departments',
-    //         data:{
-    //             name:"abdo"
-    //         }
-    //     })
-    //     .then((response)=>{
-    //         console.log(response.data);
-    //     })
-    //     .catch((error)=>{
-    //         //handle error
-    //         console.log(error)
-    //         console.log("errrrrrrrrrrrorrrrrrrrrrrrrrrrrrrrrrrr")
-    //     })
-    //     .finally(()=>{
-    //         // always executed
-    //     })
-    // },[])
-
+    
     return ( 
         <React.Fragment>
 {/* Home sections */}
             <div className="h-full">
-{/* Home section 1.1 test api */}
-                <div className="mx-10 mb-40 p-10 flex flex-col items-center bg-black text-red-500 text-6xl">
-                    <div id="test">{data}</div>
-                    <div>
-                        <button
-                            className="text-sm bg-transparentn text-white font-semibold m-4 py-2 px-4 border border-blue-1  rounded hover:bg-blue-1 hover:text-white hover:border-transparent"
-                        >
-                            Create
-                        </button>
-                        <button
-                            className="text-sm bg-transparentn text-white font-semibold m-4 py-2 px-4 border border-blue-1  rounded hover:bg-blue-1 hover:text-white hover:border-transparent"
-                        >
-                            Read
-                        </button>
-                        <button
-                            className="text-sm bg-transparentn text-white font-semibold m-4 py-2 px-4 border border-blue-1  rounded hover:bg-blue-1 hover:text-white hover:border-transparent"
-                        >
-                            Update
-                        </button>
-                        <button
-                            className="text-sm bg-transparentn text-white font-semibold m-4 py-2 px-4 border border-blue-1  rounded hover:bg-blue-1 hover:text-white hover:border-transparent"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div>
 {/* Home section 1*/}
                 <Header/>
 {/* Home section 2 */}
