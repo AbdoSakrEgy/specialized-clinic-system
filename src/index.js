@@ -4,6 +4,9 @@ import './css files/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// ---------- load users.json globaly ----------
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>

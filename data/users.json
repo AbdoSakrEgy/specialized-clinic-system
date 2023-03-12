@@ -1,16 +1,20 @@
 {
-    "users":[
-        {
-            "id":1,
-            "username":"ahmed ali",
-            "password":"1234",
-            "email":"ahmed123@gmail.com"
-        },
-        {
-            "id":2,
-            "username":"abdo sakr",
-            "password":"4321",
-            "email":"abdo22@gmail.com"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "username": "عبدالرحيم السيد صقر",
+      "password": "1212",
+      "email": "abdo@gmail.com",
+      "phonenumber":"",
+      "location":"",
+      "age":"",
+      "profileimage":""
+    },
+    {
+      "id": 2,
+      "username": "abdo sakr",
+      "password": "4321",
+      "email": "abdo22@gmail.com"
+    }
+  ]
 }

@@ -4,7 +4,7 @@ import { Popover } from 'react-tiny-popover'
 import AvatarEditor from 'react-avatar-editor'
 import 'tw-elements';
 
-export default function Avatar () {
+export default function Avatar (props) {
     // Popover
     const [isPopoverOpen,setIsPopoverOpen]=useState(null);
     // Avatar
@@ -58,6 +58,11 @@ export default function Avatar () {
         cropperOpen: true
       });
     };
+    // handleSingOut
+    const handleSingOut=()=>{
+      props.userData.setUserData({});
+      localStorage.clear();
+    }
 
     return(
         <React.Fragment>
@@ -70,7 +75,7 @@ export default function Avatar () {
                     <div className="overflow-hidden min-w-fit rounded-lg text-right mr-7 drop-shadow-2xl">
                         {/* popover section 1 */}
                         <div className="flex justify-end items-center py-3 px-5 text-white bg-[#016EDF]">
-                            <div className="mr-4">عبدالرحيم السيد صقر</div>
+                            <div className="mr-4">{props.userData.userData.username}</div>
                             {/* Avatar */}
                             <div className="rounded-full h-16 w-16 cursor-pointer relative">
                                 <img src={picture.croppedImg} className="rounded-full h-16 w-16 cursor-pointer"/>
@@ -121,7 +126,7 @@ export default function Avatar () {
                         <hr className="border-gray-1"/>
                         {/* popover section 4 */}
                         <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
-                            <Link to="/">تسجيل الخروج</Link>
+                            <Link to="/" onClick={handleSingOut}>تسجيل الخروج</Link>
                         </div>
                     </div>
                 }

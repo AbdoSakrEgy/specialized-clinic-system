@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import '../../css files/App.css'
 
-const Profile = () => {
+const Profile = (props) => {
     // ---------- password field ----------
     const [passInputType,setPassInputType] = useState("password")
     const [passIcon,setPassIcon] =useState(faEyeSlash)
@@ -49,11 +49,13 @@ const Profile = () => {
     const [passwordErrorMessage,setPasswordErrorMessage]=useState(null);
     const [newPasswordErrorMessage,setNewPasswordErrorMessage]=useState(null);
 
-    const handleSubmit=(e)=>{
+    // ---------- handleChange fn ----------
+    const handleChange=(e)=>{
         e.preventDefault();
         validate1();
         validate2();
     }
+    // ---------- validateUserInputs fn ----------
     const validate2=()=>{
         if(phoneNumber.length>11){
             setPhoneNumberErrorMessage("!رقم هاتف غير صحيح");
@@ -124,7 +126,7 @@ const Profile = () => {
                                     type="text"
                                     id="username"
                                     className="userDataInput"
-                                    value={username}
+                                    value={props.userData.userData.username}
                                     onChange={(e)=>{setUsername(e.target.value)}}
                                 />
                                 <label htmlFor="username" className="userDataHeader">
@@ -137,7 +139,7 @@ const Profile = () => {
                                     type="email"
                                     id="email"
                                     className="userDataInput"
-                                    value={email}
+                                    value={props.userData.userData.email}
                                     onChange={(e)=>{setEmail(e.target.value)}}
                                 />
                                 <label htmlFor="email" className="userDataHeader">
@@ -147,14 +149,14 @@ const Profile = () => {
                             <div className="text-end pr-48 text-red-600">{emailErrorMessage}</div>
                             <div className="hv-bc mt-14">
                                 <input
-                                    type="date"
+                                    type="number"
                                     id="userBirthday"
                                     className="userDataInput"
-                                    value={birthday}
+                                    value={props.userData.userData.age}
                                     onChange={(e)=>{setBirthday(e.target.value)}}
                                 />
                                 <label htmlFor="userBirthday" className="userDataHeader">
-                                    تاريخ الميلاد
+                                    العمر
                                 </label>
                             </div>
                             <div className="text-end pr-48 text-red-600">{birthdayErrorMessage}</div>
@@ -163,7 +165,7 @@ const Profile = () => {
                                     type="number"
                                     id="phonenumber"
                                     className="userDataInput"
-                                    value={phoneNumber}
+                                    value={props.userData.userData.phonenumber}
                                     onChange={(e)=>{setPhoneNumber(e.target.value)}}
                                 />
                                 <label htmlFor="phonenumber" className="userDataHeader">
@@ -176,7 +178,7 @@ const Profile = () => {
                                     type="text"
                                     id="userAddress"
                                     className="userDataInput"
-                                    value={address}
+                                    value={props.userData.userData.location}
                                     onChange={(e)=>{setAddress(e.target.value)}}
                                 />
                                 <label htmlFor="userAddress" className="userDataHeader">
@@ -221,7 +223,7 @@ const Profile = () => {
                             <button className="text-sm py-2 px-8 rounded bg-gray-1 text-black mr-5">
                                 إلغاء
                             </button>
-                            <button onClick={handleSubmit} className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white">
+                            <button onClick={handleChange} className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white">
                                 حفظ
                             </button>
                         </div>

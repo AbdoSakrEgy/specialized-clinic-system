@@ -3,14 +3,14 @@ import { Outlet } from "react-router-dom";
 import Media from "./Media";
 import NavBar from "./NavBar";
 
-const AppHeader = () => {
+const AppHeader = (props) => {
     
     return ( 
         <React.Fragment>
             {/* -------media header------- */}
             <Media/>
             {/* -------navbar------- */}
-            <NavBar/>
+            <NavBar userData={props.userData}/>
             {/* -------outlet------- */}
             <Outlet/>
         </React.Fragment>
