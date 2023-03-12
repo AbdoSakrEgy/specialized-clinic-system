@@ -32,69 +32,83 @@ const Profile = (props) => {
         }
     }
     // ---------- user data ----------
-    const [username,setUsername]=useState(null);
-    const [email,setEmail]=useState(null);
-    const [phoneNumber,setPhoneNumber]=useState(null);
-    const [address,setAddress] = useState(null);
-    const [birthday,setBirthday] = useState(null);
-    const [password,setPassword]=useState(null);
-    const [newPassword,setNewPassword]=useState(null);
+    const [username,setUsername]=useState("");
+    const [email,setEmail]=useState("");
+    const [phoneNumber,setPhoneNumber]=useState("");
+    const [address,setAddress] = useState("");
+    const [age,setAge] = useState("");
+    const [password,setPassword]=useState("");
+    const [newPassword,setNewPassword]=useState("");
     const [truePassword,setTruePassword]=useState("12345");
     
-    const [usernameErrorMessage,setUsernameErrorMessage]=useState(null);
-    const [emailErrorMessage,setEmailErrorMessage]=useState(null);
-    const [phoneNumberErrorMessage,setPhoneNumberErrorMessage]=useState(null);
-    const [addressErrorMessage,setAddressErrorMessage] = useState(null);
-    const [birthdayErrorMessage,setBirthdayErrorMessage] = useState(null);
-    const [passwordErrorMessage,setPasswordErrorMessage]=useState(null);
-    const [newPasswordErrorMessage,setNewPasswordErrorMessage]=useState(null);
+    const [usernameErrorMessage,setUsernameErrorMessage]=useState("");
+    const [emailErrorMessage,setEmailErrorMessage]=useState("");
+    const [phoneNumberErrorMessage,setPhoneNumberErrorMessage]=useState("");
+    const [addressErrorMessage,setAddressErrorMessage] = useState("");
+    const [ageErrorMessage,setAgeErrorMessage] = useState("");
+    const [passwordErrorMessage,setPasswordErrorMessage]=useState("");
+    const [newPasswordErrorMessage,setNewPasswordErrorMessage]=useState("");
 
-    // ---------- handleChange fn ----------
-    const handleChange=(e)=>{
+    // ---------- handleUpdatedData fn ----------
+    const handleCancle=(e)=>{
         e.preventDefault();
-        validate1();
-        validate2();
+        document.getElementById("userDataForm").reset();
+        setUsernameErrorMessage("");
+        setEmailErrorMessage("");
+        setPhoneNumberErrorMessage("");
+        setAddressErrorMessage("");
+        setAgeErrorMessage("");
+        setPasswordErrorMessage("");
+        setNewPasswordErrorMessage("");
     }
-    // ---------- validateUserInputs fn ----------
-    const validate2=()=>{
+    // ---------- handleUpdatedData fn ----------
+    const handleUpdatedData=(e)=>{
+        e.preventDefault();
+        validateUpdatedData();
+        validatePWD();
+    }
+    // ---------- validateUpdatedData fn ----------
+    const validateUpdatedData=()=>{
+        const regex=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+        if(username.length>15){
+            setUsernameErrorMessage("!يجب ألا يزيد اسم المستخدم عن 15 حروف");
+        }else{
+            setUsernameErrorMessage("");
+        }
+
+        if(age>200){
+            setAgeErrorMessage("! أدخل بيانات صحيحة");
+        }else{
+            setAgeErrorMessage("");
+        }
+        
+        if(email){
+            if(!regex.test(email)){
+                setEmailErrorMessage("!صيغة البريد الإلكتروني غير صحيحة");
+            }else{
+                setEmailErrorMessage("");
+            }
+        }
+
         if(phoneNumber.length>11){
             setPhoneNumberErrorMessage("!رقم هاتف غير صحيح");
         }else{
-            setPhoneNumberErrorMessage(null);
+            setPhoneNumberErrorMessage("");
         }
 
         if(address.length>50){
             setAddressErrorMessage("!لا يجب أن يزيد العنوان عن 50 حرف");
         }else{
-            setAddressErrorMessage(null);
+            setAddressErrorMessage("");
         }
-        // setPasswordErrorMessage("hello");
     }
-    const validate1=()=>{
-        const regex=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-        if(!username){
-            setUsernameErrorMessage("!اسم المستخدم مطلوب");
-        }else if(username.length>15){
-            setUsernameErrorMessage("!يجب ألا يزيد اسم المستخدم عن 15 حروف");
-        }else{
-            setUsernameErrorMessage(null);
-        }
-
-        if(!email){
-            setEmailErrorMessage("!البريد الإلكتروني مطلوب");
-        }else if(!regex.test(email)){
-            setEmailErrorMessage("!صيغة البريد الإلكتروني غير صحيحة");
-        }else{
-            setEmailErrorMessage(null);
-        }
-
-
+    const validatePWD=()=>{
         if(password.length!=0){
             if(password!=truePassword){
                 setPasswordErrorMessage("!كلمة المرور غير صحيحة")
             }else{
-                setPasswordErrorMessage(null);
+                setPasswordErrorMessage("");
                 if(!newPassword){
                     setNewPasswordErrorMessage("!كلمة المرور مطلوبة");
                 }else if(newPassword.length<4){
@@ -103,21 +117,21 @@ const Profile = (props) => {
                     setNewPasswordErrorMessage("!كلمة المرور يجب أن تقل عن 10 حروف");
                 }else{
                     setTruePassword(newPassword);
-                    setNewPasswordErrorMessage(null);
+                    setNewPasswordErrorMessage("");
                 }
             }
             
         }else{
-            setPasswordErrorMessage(null);
-            setNewPasswordErrorMessage(null);
+            setPasswordErrorMessage("");
+            setNewPasswordErrorMessage("");
         }
     }
-    
+
     return ( 
         <React.Fragment>
             <div className="h-screen bg-gray-1 flex justify-center items-start w-full p-[5vh] pr-10 overflow-hidden">
                 {/* إدارة الملف الشخصي */}
-                <form className="w-[80%]">
+                <form className="w-[80%]" id="userDataForm">
                     <div className="rounded-t-lg py-3 text-xl text-center bg-blue-1 text-white">إدارة الملف الشخصي</div>
                     <div className="bg-white px-5 py-8 rounded-b-xl shadow-md flex flex-col">
                         <div className="flex flex-col">
@@ -126,7 +140,8 @@ const Profile = (props) => {
                                     type="text"
                                     id="username"
                                     className="userDataInput"
-                                    value={props.userData.userData.username}
+                                    // value={props.userData.userData.username}
+                                    placeholder={props.userData.userData.username}
                                     onChange={(e)=>{setUsername(e.target.value)}}
                                 />
                                 <label htmlFor="username" className="userDataHeader">
@@ -139,7 +154,8 @@ const Profile = (props) => {
                                     type="email"
                                     id="email"
                                     className="userDataInput"
-                                    value={props.userData.userData.email}
+                                    // value={props.userData.userData.email}
+                                    placeholder={props.userData.userData.email}
                                     onChange={(e)=>{setEmail(e.target.value)}}
                                 />
                                 <label htmlFor="email" className="userDataHeader">
@@ -150,22 +166,24 @@ const Profile = (props) => {
                             <div className="hv-bc mt-14">
                                 <input
                                     type="number"
-                                    id="userBirthday"
+                                    id="userAge"
                                     className="userDataInput"
-                                    value={props.userData.userData.age}
-                                    onChange={(e)=>{setBirthday(e.target.value)}}
+                                    // value={props.userData.userData.age}
+                                    placeholder={props.userData.userData.age}
+                                    onChange={(e)=>{setAge(e.target.value)}}
                                 />
-                                <label htmlFor="userBirthday" className="userDataHeader">
+                                <label htmlFor="userAge" className="userDataHeader">
                                     العمر
                                 </label>
                             </div>
-                            <div className="text-end pr-48 text-red-600">{birthdayErrorMessage}</div>
+                            <div className="text-end pr-48 text-red-600">{ageErrorMessage}</div>
                             <div className="hv-bc mt-14">
                                 <input
                                     type="number"
                                     id="phonenumber"
                                     className="userDataInput"
-                                    value={props.userData.userData.phonenumber}
+                                    // value={props.userData.userData.phonenumber}
+                                    placeholder={props.userData.userData.phonenumber}
                                     onChange={(e)=>{setPhoneNumber(e.target.value)}}
                                 />
                                 <label htmlFor="phonenumber" className="userDataHeader">
@@ -178,7 +196,8 @@ const Profile = (props) => {
                                     type="text"
                                     id="userAddress"
                                     className="userDataInput"
-                                    value={props.userData.userData.location}
+                                    // value={props.userData.userData.location}
+                                    placeholder={props.userData.userData.location}
                                     onChange={(e)=>{setAddress(e.target.value)}}
                                 />
                                 <label htmlFor="userAddress" className="userDataHeader">
@@ -192,7 +211,7 @@ const Profile = (props) => {
                                         type={passInputType}
                                         id="userPassword"
                                         className="userDataInput"
-                                        value={password}
+                                        // value={password}
                                         onChange={(e)=>{setPassword(e.target.value)}}
                                     />
                                     <FontAwesomeIcon onClick={showPassword} icon={passIcon} className="absolute top-[30%] left-4 cursor-pointer"/>
@@ -208,7 +227,7 @@ const Profile = (props) => {
                                         type={passInputType2}
                                         id="userNewPassword"
                                         className="userDataInput"
-                                        value={newPassword}
+                                        // value={newPassword}
                                         onChange={(e=>{setNewPassword(e.target.value)})}
                                     />
                                     <FontAwesomeIcon onClick={showPassword2} icon={passIcon2} className="absolute top-[30%] left-4 cursor-pointer"/>
@@ -220,10 +239,10 @@ const Profile = (props) => {
                             <div className="text-end pr-48 text-red-600">{newPasswordErrorMessage}</div>
                         </div>
                         <div className="flex justify-end mt-14">
-                            <button className="text-sm py-2 px-8 rounded bg-gray-1 text-black mr-5">
+                            <button onClick={handleCancle} className="text-sm py-2 px-8 rounded bg-gray-1 text-black mr-5">
                                 إلغاء
                             </button>
-                            <button onClick={handleChange} className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white">
+                            <button onClick={handleUpdatedData} className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white">
                                 حفظ
                             </button>
                         </div>

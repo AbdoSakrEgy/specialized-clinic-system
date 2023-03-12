@@ -25,8 +25,10 @@ const SignIn = (props) => {
                 setIsSubmitted(true);
                 // load user data
                 props.userData.setUserData(userObj);
-                // save user data localy
-                localStorage.setItem('user',JSON.stringify(userObj));
+                // save user data localy(rememberMe fn)
+                if(document.getElementById('RememberMeCheckBox').checked){
+                    localStorage.setItem('user',JSON.stringify(userObj));
+                }
             }else{
                 setInputErrorMessage("! تحقق من البريد الإلكتروني أو كلمة المرور"); 
             }

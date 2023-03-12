@@ -11,17 +11,9 @@ export default function AppointmentSection () {
     const [theDate,setTheDate]=useState(null)
     const [theAvailableTime,setTheAvailableTime]=useState(null)
     const [thePaymentWay,setPaymentWay]=useState(null)
-    // 
+    // handleSubmit fn
     const handleSubmit =(e)=>{
         e.preventDefault();
-        alert(patientName);
-        alert(patientPhone);
-        alert(theDepartment);
-        alert(theDoctor);
-        alert(theDetectionType);
-        alert(theDate);
-        alert(theAvailableTime);
-        alert(thePaymentWay);
     }
     return(
         <React.Fragment>
@@ -48,7 +40,7 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">إختر التخصص</div>
-                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDepartment(e.target.value)}}>
+                                <select defaultValue={' '} name="" className="AppiontmentInput" onChange={(e)=>{setTheDepartment(e.target.value)}}>
                                     <option value=" " hidden></option>
                                     <option value="أسنان">أسنان</option>
                                     <option value="باطنة">باطنة</option>
@@ -58,7 +50,7 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">إختر الطبيب</div>
-                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setTheDoctor(e.target.value)}}>
+                                <select defaultValue={' '} name="" className="AppiontmentInput" onChange={(e)=>{setTheDoctor(e.target.value)}}>
                                     <option value=" " hidden></option>
                                     <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
                                     <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
@@ -94,7 +86,7 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">طريقة الدفع</div>
-                                <select defaultValue={' '} name="available time" className="AppiontmentInput" onChange={(e)=>{setPaymentWay(e.target.value)}}>
+                                <select defaultValue={' '} name="" className="AppiontmentInput" onChange={(e)=>{setPaymentWay(e.target.value)}}>
                                     <option value=" " hidden></option>
                                     <option value="عند الطبيب">عند الطبيب</option>
                                 </select>

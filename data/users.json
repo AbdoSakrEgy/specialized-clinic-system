@@ -14,7 +14,11 @@
       "id": 2,
       "username": "abdo sakr",
       "password": "4321",
-      "email": "abdo22@gmail.com"
+      "email": "abdo22@gmail.com",
+      "phonenumber":"",
+      "location":"",
+      "age":"",
+      "profileimage":""
     }
   ]
 }

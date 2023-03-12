@@ -7,9 +7,6 @@ import AboutUsSection from "./AboutUsSection";
 import FooterSection from "./FooterSection";
 import Header from "./Header";
 import BandAid from "../BandAid/BandAid";
-import axios from "axios";
-import LoginTest from "../Account/LoginTest/LoginTest";
-import AsyncTest from "../Account/AsyncTest/AsyncTest";
 
 export default function Home () {
     
