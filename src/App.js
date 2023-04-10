@@ -14,6 +14,7 @@ import Profile from './pages/Account/Profile';
 import VisitsHistory from './pages/visits history/VisitsHistory';
 
 import axios from "axios";
+import VisitsHistoryDoctorView from "./pages/visits history/VistsHistoryDoctorView";
 
 function App() {
   // ---------- load users.json ----------
@@ -39,6 +40,8 @@ function App() {
       setUserData(foundUser);
     }
   },[])
+  // ---------- as a doctor ----------
+  const [isDoctor,setIsDoctor]=useState(false);
 
   return (
     <React.Fragment>
@@ -47,7 +50,8 @@ function App() {
           <Route path="/" element={<AppHeader userData={{userData,setUserData}}/>}>
             <Route index element={<Home/>} />
             
-            <Route path='/VisitsHistory' element={<VisitsHistory/>}/>
+            <Route path='/VisitsHistory' element={<VisitsHistory isDoctor={isDoctor}/>}/>
+            <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView isDoctor={isDoctor}/>}/>
 
             <Route path='/bandAid/breaking' element={<Breaking/>} />
             <Route path='/bandAid/drowing' element={<Drowing/>} />

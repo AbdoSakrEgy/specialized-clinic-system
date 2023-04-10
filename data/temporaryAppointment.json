@@ -1,0 +1,12 @@
+{
+    "users":[
+        {
+            "id":0,
+            "patientName":"",
+            "patientNumber":"",
+            "date":"",
+            "detectionType":"",
+            "detectionStatus":""
+        }
+    ]
+}

@@ -86,7 +86,7 @@ export default function AppointmentSection () {
 
                             <div className="w-full">
                                 <div className="mb-1 font-semibold">طريقة الدفع</div>
-                                <select defaultValue={' '} name="" className="AppiontmentInput" onChange={(e)=>{setPaymentWay(e.target.value)}}>
+                                <select defaultValue={' '} name="   " className="AppiontmentInput" onChange={(e)=>{setPaymentWay(e.target.value)}}>
                                     <option value=" " hidden></option>
                                     <option value="عند الطبيب">عند الطبيب</option>
                                 </select>

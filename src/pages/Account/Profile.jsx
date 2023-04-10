@@ -50,18 +50,7 @@ const Profile = (props) => {
     const [newPasswordErrorMessage,setNewPasswordErrorMessage]=useState("");
 
     // ---------- handleUpdatedData fn ----------
-    const handleCancle=(e)=>{
-        e.preventDefault();
-        document.getElementById("userDataForm").reset();
-        setUsernameErrorMessage("");
-        setEmailErrorMessage("");
-        setPhoneNumberErrorMessage("");
-        setAddressErrorMessage("");
-        setAgeErrorMessage("");
-        setPasswordErrorMessage("");
-        setNewPasswordErrorMessage("");
-    }
-    // ---------- handleUpdatedData fn ----------
+    const [isDataChanged,setIsDataChanged]=useState(false)
     const handleUpdatedData=(e)=>{
         e.preventDefault();
         validateUpdatedData();
@@ -140,23 +129,28 @@ const Profile = (props) => {
                                     type="text"
                                     id="username"
                                     className="userDataInput"
-                                    // value={props.userData.userData.username}
-                                    placeholder={props.userData.userData.username}
-                                    onChange={(e)=>{setUsername(e.target.value)}}
+                                    defaultValue={props.userData.userData.username}
+                                    onChange={(e)=>{
+                                        setUsername(e.target.value);
+                                        {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                    }}
                                 />
                                 <label htmlFor="username" className="userDataHeader">
                                     الاسم
                                 </label>
                             </div>
                             <div className="text-end pr-48 text-red-600">{usernameErrorMessage}</div>
+
                             <div className="hv-bc mt-14">
                                 <input
                                     type="email"
                                     id="email"
                                     className="userDataInput"
-                                    // value={props.userData.userData.email}
-                                    placeholder={props.userData.userData.email}
-                                    onChange={(e)=>{setEmail(e.target.value)}}
+                                    defaultValue={props.userData.userData.email}
+                                    onChange={(e)=>{
+                                        setEmail(e.target.value);
+                                        {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                    }}
                                 />
                                 <label htmlFor="email" className="userDataHeader">
                                     البريد الإلكتروني
@@ -168,9 +162,11 @@ const Profile = (props) => {
                                     type="number"
                                     id="userAge"
                                     className="userDataInput"
-                                    // value={props.userData.userData.age}
-                                    placeholder={props.userData.userData.age}
-                                    onChange={(e)=>{setAge(e.target.value)}}
+                                    defaultValue={props.userData.userData.age}
+                                    onChange={(e)=>{
+                                        setAge(e.target.value);
+                                        {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                    }}
                                 />
                                 <label htmlFor="userAge" className="userDataHeader">
                                     العمر
@@ -182,9 +178,11 @@ const Profile = (props) => {
                                     type="number"
                                     id="phonenumber"
                                     className="userDataInput"
-                                    // value={props.userData.userData.phonenumber}
-                                    placeholder={props.userData.userData.phonenumber}
-                                    onChange={(e)=>{setPhoneNumber(e.target.value)}}
+                                    defaultValue={props.userData.userData.phonenumber}
+                                    onChange={(e)=>{
+                                        setPhoneNumber(e.target.value);
+                                        {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                    }}
                                 />
                                 <label htmlFor="phonenumber" className="userDataHeader">
                                     رقم الهاتف
@@ -196,9 +194,11 @@ const Profile = (props) => {
                                     type="text"
                                     id="userAddress"
                                     className="userDataInput"
-                                    // value={props.userData.userData.location}
-                                    placeholder={props.userData.userData.location}
-                                    onChange={(e)=>{setAddress(e.target.value)}}
+                                    defaultValue={props.userData.userData.location}
+                                    onChange={(e)=>{
+                                        setAddress(e.target.value);
+                                        {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                    }}
                                 />
                                 <label htmlFor="userAddress" className="userDataHeader">
                                     العنوان
@@ -211,8 +211,11 @@ const Profile = (props) => {
                                         type={passInputType}
                                         id="userPassword"
                                         className="userDataInput"
-                                        // value={password}
-                                        onChange={(e)=>{setPassword(e.target.value)}}
+                                        defaultValue={password}
+                                        onChange={(e)=>{
+                                            setPassword(e.target.value);
+                                            {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                        }}
                                     />
                                     <FontAwesomeIcon onClick={showPassword} icon={passIcon} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
@@ -227,8 +230,11 @@ const Profile = (props) => {
                                         type={passInputType2}
                                         id="userNewPassword"
                                         className="userDataInput"
-                                        // value={newPassword}
-                                        onChange={(e=>{setNewPassword(e.target.value)})}
+                                        defaultValue={newPassword}
+                                        onChange={(e)=>{
+                                            setNewPassword(e.target.value);
+                                            {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
+                                        }}
                                     />
                                     <FontAwesomeIcon onClick={showPassword2} icon={passIcon2} className="absolute top-[30%] left-4 cursor-pointer"/>
                                 </div>
@@ -239,12 +245,18 @@ const Profile = (props) => {
                             <div className="text-end pr-48 text-red-600">{newPasswordErrorMessage}</div>
                         </div>
                         <div className="flex justify-end mt-14">
-                            <button onClick={handleCancle} className="text-sm py-2 px-8 rounded bg-gray-1 text-black mr-5">
+                            <button onClick={()=>{}} className="text-sm font-bold py-2 px-8 mr-5 rounded shadow-md bg-blue-1 text-white">
                                 إلغاء
                             </button>
-                            <button onClick={handleUpdatedData} className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white">
-                                حفظ
-                            </button>
+                            {isDataChanged ? (
+                                <button onClick={handleUpdatedData} className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white">
+                                    حفظ
+                                </button>
+                            ):(
+                                <button onClick={(e)=>{e.preventDefault()}} className="text-sm font-bold py-2 px-8 rounded cursor-default bg-[#e2e8ea] text-[#7f8488]">
+                                    حفظ
+                                </button>
+                            )}
                         </div>
                     </div>
                 </form>

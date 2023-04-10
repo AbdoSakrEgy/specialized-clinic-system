@@ -7,7 +7,7 @@ import Avatar from "./Avatar";
 function NavBar(props) {
     return ( 
         <React.Fragment>
-            <nav className="hv-bc h-20 px-10 shadow-md sticky-top bg-white">
+            <nav className="hv-bc h-20 px-10 shadow-md sticky top-0 bg-white">
                 {/*Logo*/}
                 <Link2 to="HeaderSection" smooth={true} duration={100} spy={true} spyThrottle={0} offset={-135}>
                     <Link to='/'>
