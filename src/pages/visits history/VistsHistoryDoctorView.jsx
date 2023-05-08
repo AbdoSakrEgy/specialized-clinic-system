@@ -1,7 +1,12 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import AddNewPatient from "./AddNewPatient";
 
 export default function VisitsHistoryDoctorView () {
+    const handleDone=()=>{
+        alert('تم الإنتهاء')
+    }
     return ( 
         <React.Fragment>
             <div className="min-h-screen bg-gray-100">
@@ -30,9 +35,7 @@ export default function VisitsHistoryDoctorView () {
                             <input type="date" className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"/>
                         </div>
                     </div>
-                    {/* modaaaaaal */}
                     <AddNewPatient/>
-                    {/* modaaaaaal */}
                 </div>
                 {/* section 3 */}
                 <div className="flex flex-col">
@@ -42,6 +45,9 @@ export default function VisitsHistoryDoctorView () {
                                 <table className="min-w-full">
                                     <thead className="bg-blue-2 text-white border-b text-lg font-extrabold">
                                         <tr>
+                                            <th className="tdStyle text-[#0ed772]">
+                                                
+                                            </th>
                                             <th scope="col" className="thStyle">
                                                 حالة الكشف
                                             </th>
@@ -61,8 +67,14 @@ export default function VisitsHistoryDoctorView () {
                                     </thead>
                                     <tbody className="text-base font-medium text-black">
                                         <tr className="bg-white border-b">
+                                            <td className="tdStyle">
+                                                <button onClick={handleDone}>
+                                                    <FontAwesomeIcon icon={faFloppyDisk} size="2xl" />
+                                                </button>
+                                            </td>
                                             <td className="tdStyle text-[#8a2be2]">
-                                                في الإنتظار
+                                                
+                                                <span>في الإنتظار</span>
                                             </td>
                                             <td className="tdStyle">
                                                 كشف جديد
@@ -80,6 +92,9 @@ export default function VisitsHistoryDoctorView () {
                                             </td>
                                         </tr>
                                         <tr className="bg-white border-b">
+                                            <td className="tdStyle">
+                                                
+                                            </td>
                                             <td className="tdStyle text-[#0ed772]">
                                                 إنتهي
                                             </td>

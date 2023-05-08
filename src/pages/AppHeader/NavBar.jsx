@@ -10,13 +10,14 @@ function NavBar(props) {
             <nav className="hv-bc h-20 px-10 shadow-md sticky top-0 bg-white">
                 {/*Logo*/}
                 <Link2 to="HeaderSection" smooth={true} duration={100} spy={true} spyThrottle={0} offset={-135}>
-                    <Link to='/'>
+                    <Link to="/">
                         <div className="logo flex flex-col items-center cursor-pointer text-blue-2">
                             <FaStethoscope style={{fontSize:'25px'}} className="mr-3"/>
                             <div className="font-bold text-lg">Specialized Clinic</div>
                         </div>
                     </Link>
                 </Link2>
+
                 {/*nav links*/}
                 <div className="hv-bc text-lg font-bold text-blue-2" id="myDIV">
 
@@ -55,6 +56,8 @@ function NavBar(props) {
                         </Link>
                     </Link2>
                 </div>
+
+                {/* login or profileAvatar */}
                 {Object.keys(props.userData.userData).length ? (
                     // profile avatar
                     <div>
@@ -75,7 +78,6 @@ function NavBar(props) {
                         </Link>
                     </div>
                 )}
-                
                 
             </nav>
         </React.Fragment>
