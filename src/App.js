@@ -17,51 +17,40 @@ import axios from "axios";
 import VisitsHistoryDoctorView from "./pages/visits history/VistsHistoryDoctorView";
 
 function App() {
-  // ---------- load users.json ----------
-  const [usersDatabase,setUsersDatabase] = useState([])
-
-  const client=axios.create({
-      baseURL:"http://localhost:4111/users"
-  })
-  useEffect(()=>{
-      async function getUsersDatabase(){
-          const response = await client.get();
-          setUsersDatabase(response.data)
-      }
-      getUsersDatabase();
-  },[])
-  // ---------- load user data ----------
+  // ---------- logedin user data ----------
   const [userData,setUserData]=useState({});
-
+  // ---------- localed data ----------
   useEffect(()=>{
-    const loggedInUser=localStorage.getItem('user');
-    if(loggedInUser){
-      const foundUser=JSON.parse(loggedInUser);
+    const localedUser=localStorage.getItem('userSignIn');
+    if(localedUser){
+      const foundUser=JSON.parse(localedUser);
       setUserData(foundUser);
+      console.log('App.jsx');
+      console.log(userData);
+    }else{
+      console.log('nothingggg');
     }
   },[])
-  // ---------- as a doctor ----------
-  const [isDoctor,setIsDoctor]=useState(false);
 
   return (
     <React.Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AppHeader userData={{userData,setUserData}}/>}>
-            <Route index element={<Home/>} />
+          <Route path="/" element={<AppHeader userData={userData} setUserData={setUserData}/>}>
+            <Route index element={<Home />} />
             
-            <Route path='/VisitsHistory' element={<VisitsHistory isDoctor={isDoctor}/>}/>
-            <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView isDoctor={isDoctor}/>}/>
+            <Route path='/VisitsHistory' element={<VisitsHistory/>}/>
+            <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView/>}/>
 
             <Route path='/bandAid/breaking' element={<Breaking/>} />
             <Route path='/bandAid/drowing' element={<Drowing/>} />
             <Route path='/bandAid/burn' element={<Burn/>} />
             <Route path='/bandAid/headaches' element={<Headaches/>} />
 
-            <Route path='/signup' element={<SignUp usersDatabase={{usersDatabase,setUsersDatabase}} userData={{userData,setUserData}} />} />
-            <Route path='/signin' element={<SignIn usersDatabase={{usersDatabase,setUsersDatabase}} userData={{userData,setUserData}} />} />
+            <Route path='/signup' element={<SignUp userData={userData} setUserData={setUserData}/>} />
+            <Route path='/signin' element={<SignIn userData={userData} setUserData={setUserData}/>} />
 
-            <Route path='/profile' element={<Profile userData={{userData,setUserData}} />} />
+            <Route path='/profile' element={<Profile userData={userData} setUserData={setUserData} />} />
           </Route>
         </Routes>
       </BrowserRouter>

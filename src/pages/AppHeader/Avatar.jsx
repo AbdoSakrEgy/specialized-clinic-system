@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from "react";
-import { Outlet, Link } from "react-router-dom";
+import React,{useState} from "react";
+import { Link } from "react-router-dom";
 import { Popover } from 'react-tiny-popover'
 import AvatarEditor from 'react-avatar-editor'
 import 'tw-elements';
@@ -19,7 +19,7 @@ export default function Avatar (props) {
   
     const handleSlider = (event, value) => {
       setPicture({
-        ...picture,
+        // ...picture,
         zoom: value
       });
     };
@@ -60,7 +60,7 @@ export default function Avatar (props) {
     };
     // handleSingOut
     const handleSingOut=()=>{
-      props.userData.setUserData({});
+      props.setUserData({});
       localStorage.clear();
     }
 
@@ -75,7 +75,7 @@ export default function Avatar (props) {
                     <div className="overflow-hidden min-w-fit rounded-lg text-right mr-7 drop-shadow-2xl">
                         {/* popover section 1 */}
                         <div className="flex justify-end items-center py-3 px-5 text-white bg-[#016EDF]">
-                            <div className="mr-4">{props.userData.userData.username}</div>
+                            <div className="mr-4">{}</div>
                             {/* Avatar */}
                             <div className="rounded-full h-16 w-16 cursor-pointer relative">
                                 <img src={picture.croppedImg} className="rounded-full h-16 w-16 cursor-pointer"/>
@@ -117,10 +117,10 @@ export default function Avatar (props) {
                         <hr className="border-gray-1"/>
                         {/* popover section 2 */}
                         <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
-                            <Link to="/VisitsHistory" className="pl-10">سجل الكشوفات </Link>
+                            <Link to="/VisitsHistoryDoctorView" className="pl-10">سجل حجوزات المرضي-صفحة الطبيب</Link>
                         </div>
                         <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
-                            <Link to="/VisitsHistoryDoctorView" className="pl-10">سجل الكشوفات </Link>
+                            <Link to="/VisitsHistory" className="pl-10">سجل الكشوفات </Link>
                         </div>
                         {/* popover section 3 */}
                         <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">

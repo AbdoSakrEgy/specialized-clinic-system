@@ -129,7 +129,7 @@ const Profile = (props) => {
                                     type="text"
                                     id="username"
                                     className="userDataInput"
-                                    defaultValue={props.userData.userData.username}
+                                    // defaultValue={props.userData.userData.username}
                                     onChange={(e)=>{
                                         setUsername(e.target.value);
                                         {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
@@ -146,7 +146,7 @@ const Profile = (props) => {
                                     type="email"
                                     id="email"
                                     className="userDataInput"
-                                    defaultValue={props.userData.userData.email}
+                                    // defaultValue={props.userData.userData.email}
                                     onChange={(e)=>{
                                         setEmail(e.target.value);
                                         {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
@@ -162,7 +162,7 @@ const Profile = (props) => {
                                     type="number"
                                     id="userAge"
                                     className="userDataInput"
-                                    defaultValue={props.userData.userData.age}
+                                    // defaultValue={props.userData.userData.age}
                                     onChange={(e)=>{
                                         setAge(e.target.value);
                                         {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
@@ -178,7 +178,7 @@ const Profile = (props) => {
                                     type="number"
                                     id="phonenumber"
                                     className="userDataInput"
-                                    defaultValue={props.userData.userData.phonenumber}
+                                    // defaultValue={props.userData.userData.phonenumber}
                                     onChange={(e)=>{
                                         setPhoneNumber(e.target.value);
                                         {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }
@@ -194,7 +194,7 @@ const Profile = (props) => {
                                     type="text"
                                     id="userAddress"
                                     className="userDataInput"
-                                    defaultValue={props.userData.userData.location}
+                                    // defaultValue={props.userData.userData.location}
                                     onChange={(e)=>{
                                         setAddress(e.target.value);
                                         {if(e.target.value != e.target.defaultValue) setIsDataChanged(true) }

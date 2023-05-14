@@ -1,3 +1,4 @@
+import axios from "axios";
 import React,{useState,useEffect} from "react";
 import 'tw-elements';
 
@@ -12,8 +13,16 @@ export default function AppointmentSection () {
     const [theAvailableTime,setTheAvailableTime]=useState(null)
     const [thePaymentWay,setPaymentWay]=useState(null)
     // handleSubmit fn
-    const handleSubmit =(e)=>{
+    const handleSubmit =async(e)=>{
         e.preventDefault();
+        async function userdata(){
+                await axios.post('https://egada.vercel.app/reservation',{
+                
+            }).then((res)=>{
+                console.log(res.data);
+            })
+        }
+        userdata()
     }
     return(
         <React.Fragment>

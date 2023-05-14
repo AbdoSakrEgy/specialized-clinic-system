@@ -9,7 +9,7 @@ import Header from "./Header";
 import BandAid from "../BandAid/BandAid";
 
 export default function Home () {
-    
+
     return ( 
         <React.Fragment>
 {/* Home sections */}
@@ -19,7 +19,7 @@ export default function Home () {
 {/* Home section 2 */}
                 <DepartmentsInfoSection/>
 {/* Home section 3 */}
-                <DoctorsInfoSection/>
+                <DoctorsInfoSection />
 {/* Home section 4 */}
                 <AppointmentSection/>
 {/* Home section 5 */}
