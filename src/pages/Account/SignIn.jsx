@@ -1,90 +1,83 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const SignIn = (props) => {
-  // ---------- password field ----------
-  const [pwdInputType, setPwdInputType] = useState("password");
-  const [pwdIcon, setPwdIcon] = useState(faEyeSlash);
-
-  function showPassword() {
-    if (pwdInputType == "password") {
-      setPwdInputType("text");
-      setPwdIcon(faEye);
-    } else {
-      setPwdInputType("password");
-      setPwdIcon(faEyeSlash);
-    }
-  }
   // ---------- post old user ----------
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
+  const [userPhone, setUserphone] = useState("");
 
-  const [inputErrorMessage, setInputErrorMessage] = useState("");
+  const [userPhoneErrorMessage, setUserPhoneErrorMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const [isDataValidate, setIsDataValidate] = useState(false);
   const [isDataRecived, setIsDataRecived] = useState(false);
 
   // handleSignIn fn
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log(validateUserInputs());
     {
-      validateUserInputs() ? setIsDataValidate(true) : setIsDataValidate(false);
+      validateUserInputs() && postuser();
     }
   };
-
-  // post user
-  useEffect(() => {
-    async function postolduser() {
-      await axios
-        .post("https://egada.vercel.app/patient/logIn", {
-          mobile: inputEmail,
-        })
-        .then((res) => {
-          setIsDataRecived(true);
-          setIsError(false);
-          props.setUserData({ name: "hello" });
-          {
-            document.getElementById("RememberMeCheckBoxSignIn").checked &&
-              localStorage.setItem(
-                "userSignIn",
-                JSON.stringify({ name: "hello" })
-              );
-          }
-        })
-        .catch((error) => {
-          setIsDataRecived(false);
-          setIsError(true);
-          console.log(error);
-        });
-    }
-    {
-      isDataValidate && postolduser();
-    }
-  }, [isDataValidate]);
-
   // validateUserInputs fn
   const validateUserInputs = () => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (
-      !inputEmail ||
-      !regex.test(inputEmail) ||
-      !inputPassword ||
-      inputPassword.length < 4 ||
-      inputPassword.length > 10
-    ) {
-      setInputErrorMessage("! تحقق من البريد الإلكتروني أو كلمة المرور");
+    if (userPhone.length != 11) {
+      setUserPhoneErrorMessage("!رقم غير صحيح");
       return false;
     } else {
-      setInputErrorMessage("");
-      // isUserExist();
+      setUserPhoneErrorMessage("");
       return true;
     }
   };
+  // post user
+  async function postuser() {
+    await axios
+      .post("https://egada.vercel.app/patient/logIn", {
+        mobile: userPhone,
+      })
+      .then((res) => {
+        setIsDataRecived(true);
+        setIsError(false);
+        // setID(res.data.body._id);
+        setID("6490bbb384adde82a88852fd"); //assume id has been returned =================================
+      })
+      .catch((error) => {
+        setIsDataRecived(false);
+        setIsError(true);
+      });
+  }
+  // sendDataToLocalStorage
+  const [isChecked, setIsChecked] = useState(false);
+  const [ID, setID] = useState();
+
+  useEffect(() => {
+    async function sendDataToLocalStorage(ID) {
+      await axios
+        .get("https://egada.vercel.app/patient/" + ID)
+        .then((res) => {
+          props.setUserData(res.data.body);
+          if (isChecked) {
+            localStorage.setItem("userSignIn", JSON.stringify(res.data.body));
+          }
+        })
+        .catch((err) => {
+          console.log("err 0_0 ");
+          props.setUserData({
+            name: "7amood",
+            mobile: "774147610928",
+            isVerified: false,
+            dob: "2002-03-21T00:00:00.000Z",
+            status: true,
+            _id: "6490bbb384adde82a88852fd",
+            entryDate: "2023-06-19T20:33:55.023Z",
+            __v: 0,
+            otpId: "1d8d0c66-c484-484c-b5ce-6d5f59723e27",
+          }); //assume id has been returned =================================
+        });
+    }
+    {
+      isDataRecived && sendDataToLocalStorage(ID);
+    }
+  }, [isDataRecived]);
 
   return (
     <React.Fragment>
@@ -111,35 +104,17 @@ const SignIn = (props) => {
                     تسجيل الدخول
                   </h1>
                   <div>
-                    <label className="label">البريد الإلكتروني</label>
+                    <label className="label">رقم الهاتف</label>
                     <input
-                      value={inputEmail}
-                      type="email"
+                      value={userPhone}
+                      type="number"
                       className="ourInput"
                       onChange={(e) => {
-                        setInputEmail(e.target.value);
+                        setUserphone(e.target.value);
                       }}
                     />
-                  </div>
-                  <div>
-                    <label className="label">كلمة المرور</label>
-                    <div className="relative">
-                      <input
-                        value={inputPassword}
-                        type={pwdInputType}
-                        className="ourInput"
-                        onChange={(e) => {
-                          setInputPassword(e.target.value);
-                        }}
-                      />
-                      <div className="text-right text-red-600">
-                        {inputErrorMessage}
-                      </div>
-                      <FontAwesomeIcon
-                        onClick={showPassword}
-                        icon={pwdIcon}
-                        className="absolute top-[30%] left-4 cursor-pointer"
-                      />
+                    <div className="text-right text-red-600">
+                      {userPhoneErrorMessage}
                     </div>
                   </div>
                   <div className="text-right">
@@ -151,27 +126,25 @@ const SignIn = (props) => {
                     </label>
                     <input
                       type="checkbox"
+                      onChange={(e) => {
+                        setIsChecked(e.target.checked);
+                      }}
                       id="RememberMeCheckBoxSignIn"
                       className="cursor-pointer"
                     />
                   </div>
                 </div>
-                {/* <Link to="/profile"> */}
                 <button
                   className="my-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide"
                   onClick={handleSignIn}
                 >
                   تسجيل الدخول
                 </button>
-                {/* </Link> */}
                 {isError && (
-                  <div className="text-center pt-5 text-red-600">
-                    خطأ تقني يرجي المحاولة لاحقا
+                  <div className="text-center text-red-600">
+                    بيانات غير صحيحة
                   </div>
                 )}
-                <p className="text-right text-sm cursor-pointer text-blue-1">
-                  هل نسيت كلمة المرور؟
-                </p>
               </div>
             </form>
             <span className="pt-5">

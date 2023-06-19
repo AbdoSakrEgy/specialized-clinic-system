@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function VisitsHistory () {
+export default function VisitsHistory (props) {
     return ( 
         <React.Fragment>
             <div className="min-h-screen bg-gray-100">

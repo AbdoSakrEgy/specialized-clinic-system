@@ -13,23 +13,25 @@ import SignIn from './pages/Account/SignIn';
 import Profile from './pages/Account/Profile';
 import VisitsHistory from './pages/visits history/VisitsHistory';
 
-import axios from "axios";
 import VisitsHistoryDoctorView from "./pages/visits history/VistsHistoryDoctorView";
 
 function App() {
-  // ---------- logedin user data ----------
+  // logedin user data
   const [userData,setUserData]=useState({});
-  // ---------- localed data ----------
+  // localed data
   useEffect(()=>{
-    const localedUser=localStorage.getItem('userSignIn');
-    if(localedUser){
-      const foundUser=JSON.parse(localedUser);
+    const localedUserIn=localStorage.getItem('userSignIn');
+    const localedUserUp=localStorage.getItem('userSignUp');
+
+    if(localedUserIn){
+      const foundUser=JSON.parse(localedUserIn);
       setUserData(foundUser);
-      console.log('App.jsx');
-      console.log(userData);
+    }else if(localedUserUp){
+      const foundUser=JSON.parse(localedUserUp);
+      setUserData(foundUser);
     }else{
-      console.log('nothingggg');
     }
+    // console.log("userData:",userData);
   },[])
 
   return (
@@ -39,7 +41,7 @@ function App() {
           <Route path="/" element={<AppHeader userData={userData} setUserData={setUserData}/>}>
             <Route index element={<Home />} />
             
-            <Route path='/VisitsHistory' element={<VisitsHistory/>}/>
+            <Route path='/VisitsHistory' element={<VisitsHistory userData={userData}/>}/>
             <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView/>}/>
 
             <Route path='/bandAid/breaking' element={<Breaking/>} />

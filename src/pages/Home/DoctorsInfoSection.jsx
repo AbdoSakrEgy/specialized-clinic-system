@@ -24,7 +24,7 @@ export default function DoctorsInfoSection () {
                         {/* الطبيب الأول */}
                         <div className="DoctorInfoCard">
                             <div className="DoctorInfoCardDiv">
-                                <img className="w-full h-[15rem]" src={require('../../Images/d1.jpg')} alt={"not found"}/>
+                                <img className="w-full h-[15rem] brightness-50" src={require('../../Images/d1.jpg')} alt={"not found"}/>
                                 <div className="p-6">
                                     <div className="text-black font-bold text-xl mb-8">{medicalStuff ? medicalStuff[0].name : 'loading...'}</div>
                                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">{medicalStuff ? medicalStuff[0].dept.name : 'loading...'}</span><br />
@@ -42,7 +42,7 @@ export default function DoctorsInfoSection () {
                         {/* الطبيب الثاني */}
                         <div className="DoctorInfoCard">
                             <div className="DoctorInfoCardDiv">
-                                <img className="w-full h-[15rem]" src={require('../../Images/d2.jpg')} alt={"not found"}/>
+                                <img className="w-full h-[15rem] brightness-50" src={require('../../Images/d2.jpg')} alt={"not found"}/>
                                 <div className="p-6">
                                     <div className="text-black font-bold text-xl mb-8">{medicalStuff ? medicalStuff[0].name : 'loading...'}</div>
                                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">{medicalStuff ? medicalStuff[0].dept.name : 'loading...'}</span><br />
@@ -60,7 +60,7 @@ export default function DoctorsInfoSection () {
                         {/* الطبيب الثالث */}
                         <div className="DoctorInfoCard">
                             <div className="DoctorInfoCardDiv">
-                                <img className="w-full h-[15rem]" src={require('../../Images/d1.jpg')} alt={"not found"}/>
+                                <img className="w-full h-[15rem] brightness-50" src={require('../../Images/d1.jpg')} alt={"not found"}/>
                                 <div className="p-6">
                                     <div className="text-black font-bold text-xl mb-8">{medicalStuff ? medicalStuff[0].name : 'loading...'}</div>
                                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">{medicalStuff ? medicalStuff[0].dept.name : 'loading...'}</span><br />
@@ -78,7 +78,7 @@ export default function DoctorsInfoSection () {
                         {/* الطبيب الرابع */}
                         <div className="DoctorInfoCard">
                             <div className="DoctorInfoCardDiv">
-                                <img className="w-full h-[15rem]" src={require('../../Images/d2.jpg')} alt={"not found"}/>
+                                <img className="w-full h-[15rem] brightness-50" src={require('../../Images/d2.jpg')} alt={"not found"}/>
                                 <div className="p-6">
                                     <div className="text-black font-bold text-xl mb-8">{medicalStuff ? medicalStuff[0].name : 'loading...'}</div>
                                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">{medicalStuff ? medicalStuff[0].dept.name : 'loading...'}</span><br />
@@ -96,7 +96,7 @@ export default function DoctorsInfoSection () {
                         {/* الطبيب الخامس */}
                         <div className="DoctorInfoCard">
                             <div className="DoctorInfoCardDiv">
-                                <img className="w-full h-[15rem]" src={require('../../Images/d5.jpg')} alt={"not found"}/>
+                                <img className="w-full h-[15rem] brightness-50" src={require('../../Images/d5.jpg')} alt={"not found"}/>
                                 <div className="p-6">
                                     <div className="text-black font-bold text-xl mb-8">{medicalStuff ? medicalStuff[0].name : 'loading...'}</div>
                                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">{medicalStuff ? medicalStuff[0].dept.name : 'loading...'}</span><br />
@@ -114,7 +114,7 @@ export default function DoctorsInfoSection () {
                         {/* الطبيب السادس */}
                         <div className="DoctorInfoCard">
                             <div className="DoctorInfoCardDiv">
-                                <img className="w-full h-[15rem]" src={require('../../Images/d1.jpg')} alt={"not found"}/>
+                                <img className="w-full h-[15rem] brightness-50" src={require('../../Images/d1.jpg')} alt={"not found"}/>
                                 <div className="p-6">
                                     <div className="text-black font-bold text-xl mb-8">{medicalStuff ? medicalStuff[0].name : 'loading...'}</div>
                                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">{medicalStuff ? medicalStuff[0].dept.name : 'loading...'}</span><br />
