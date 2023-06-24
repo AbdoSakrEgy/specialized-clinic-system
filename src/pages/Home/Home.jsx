@@ -8,7 +8,7 @@ import FooterSection from "./FooterSection";
 import Header from "./Header";
 import BandAid from "../BandAid/BandAid";
 
-export default function Home () {
+export default function Home (props) {
 
     return ( 
         <React.Fragment>
@@ -21,7 +21,7 @@ export default function Home () {
 {/* Home section 3 */}
                 <DoctorsInfoSection />
 {/* Home section 4 */}
-                <AppointmentSection/>
+                <AppointmentSection userData={props.userData} setUserData={props.setUserData}/>
 {/* Home section 5 */}
                 <BandAid/>
 {/* Home section 6 */}

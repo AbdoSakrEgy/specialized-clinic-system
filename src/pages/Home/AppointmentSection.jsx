@@ -2,12 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "tw-elements";
 
-export default function AppointmentSection() {
+export default function AppointmentSection(props) {
   // Appointment data
   const [patientName, setPatientName] = useState(null);
   const [patientPhone, setPatientPhone] = useState(null);
   const [theDepartment, setTheDepartment] = useState(null);
-  const [theDoctor, setTheDoctor] = useState(null);
+  const [theDoctorID, setTheDoctorID] = useState(null);
   const [theDetectionType, setTheDetectionType] = useState(null);
   const [theDate, setTheDate] = useState(null);
   const [theAvailableTime, setTheAvailableTime] = useState(null);
@@ -15,16 +15,55 @@ export default function AppointmentSection() {
   // handleSubmit fn
   const handleSubmit = async (e) => {
     e.preventDefault();
-    async function userdata() {
+    async function postAppointment() {
       await axios
-        .post("https://egada.vercel.app/reservation", {})
+        .post("https://egada.vercel.app/reservation", {
+          patientId: props.userData._id,
+          doctorId: theDoctorID,
+          scheduleId: "6459177b1b24462990a67ce0",
+          dateTime: theDate,
+        })
         .then((res) => {
           console.log(res.data);
           document.getElementById("appointmentform").reset();
+          alert("تم الحجز بنجاح");
         });
     }
-    userdata();
+    if (Object.keys(props.userData).length) {
+      postAppointment();
+    } else {
+      alert("يرجي تسجيل الدخول أولا!");
+    }
   };
+  // get all doctors
+  const [allDoctorsArray, setAllDoctorsArray] = useState([]);
+  useEffect(() => {
+    async function getAllDoctors() {
+      await axios
+        .get("https://egada.vercel.app/doctor/all")
+        .then((res) => {
+          setAllDoctorsArray(res.data.body);
+        })
+        .catch((err) => console.log(err));
+    }
+    getAllDoctors();
+  }, []);
+  // get avilable times
+  const [avilableTimes, setAbilableTimes] = useState(null);
+  useEffect(() => {
+    async function getAvilableTimes() {
+      await axios
+        .get("https://egada.vercel.app/doctor/schedules/" + theDoctorID)
+        .then((res) => {
+          console.log(res.data.body);
+          console.log(avilableTimes);
+          setAbilableTimes(res.data.body);
+        })
+        .catch((err) => console.log(err));
+    }
+    if (theDate != null) getAvilableTimes();
+  }, [theDate]);
+
   return (
     <React.Fragment>
       <div className="h-fit mx-10 pb-40" id="AppointmentSection">
@@ -46,7 +85,7 @@ export default function AppointmentSection() {
               <div className="w-full">
                 <div className="mb-1 font-semibold">اسم المريض</div>
                 <input
-                  required
+                  value={props.userData.name}
                   type="text"
                   className="AppiontmentInput text-right"
                   onChange={(e) => setPatientName(e.target.value)}
@@ -56,13 +95,14 @@ export default function AppointmentSection() {
               <div className="w-full">
                 <div className="mb-1 font-semibold">رقم الهاتف</div>
                 <input
-                  required
+                  value={props.userData.mobile}
                   type="number"
                   className="AppiontmentInput text-right"
                   onChange={(e) => setPatientPhone(e.target.value)}
                 />
               </div>
-              <div className="w-full">
+
+              {/* <div className="w-full">
                 <div className="mb-1 font-semibold">إختر التخصص</div>
                 <select
                   required
@@ -78,7 +118,7 @@ export default function AppointmentSection() {
                   <option value="internist">باطنة</option>
                   <option value="ENT">أنف وأذن وحنجرة</option>
                 </select>
-              </div>
+              </div> */}
               <div className="w-full">
                 <div className="mb-1 font-semibold">إختر الطبيب</div>
                 <select
@@ -87,13 +127,15 @@ export default function AppointmentSection() {
                   name=""
                   className="AppiontmentInput"
                   onChange={(e) => {
-                    setTheDoctor(e.target.value);
+                    setTheDoctorID(e.target.value);
                   }}
                 >
                   <option value="" hidden></option>
-                  <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
-                  <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
-                  <option value="عبدالرحيم صقر">عبدالرحيم صقر</option>
+                  {allDoctorsArray.map((item) => (
+                    <option value={item._id} key={item._id}>
+                      {item.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -114,24 +156,14 @@ export default function AppointmentSection() {
                 </select>
               </div>
 
-              <div className="w-full flex justify-between items-start">
-                <div className="w-full mr-7">
+              <div className="w-full flex justify-between">
+                <div className="w-full mr-7 flex flex-col">
                   <div className="mb-1 font-semibold">الأوقات المتاحة</div>
-                  <select
-                    required
-                    defaultValue={" "}
-                    name="available time"
-                    className="AppiontmentInput"
-                    onChange={(e) => {
-                      setTheAvailableTime(e.target.value);
-                    }}
-                  >
-                    <option value="" hidden></option>
-                    <option value="09:00 AM">09:00 AM</option>
-                    <option value="09:30 AM">09:30 AM</option>
-                    <option value="10:00 AM">10:00 AM</option>
-                    <option value="10:30 AM">10:30 AM</option>
-                  </select>
+                  <div className="AppiontmentInput hover:cursor-default h-full">
+                    {avilableTimes
+                      ? ` من ${avilableTimes[0].fromHr} إلي ${avilableTimes[0].toHr}`
+                      : ""}
+                  </div>
                 </div>
                 <div className="w-full">
                   <div className="mb-1 font-semibold">تاريخ الموعد</div>
@@ -161,23 +193,43 @@ export default function AppointmentSection() {
                   <option value="عند الطبيب">عند الطبيب</option>
                 </select>
               </div>
-
-              <div className="flex justify-end items-center  mt-10">
-                <input
-                  type="reset"
-                  value="إلغاء"
-                  className="cursor-pointer mr-5 text-xl"
-                />
-                <input
-                  type="submit"
-                  value="إحجز الآن"
-                  className="text-2xl min-w-[10vw] py-2 px-4 rounded shadow-md cursor-pointer bg-blue-1 text-white"
-                />
-              </div>
-
-              <div className="text-3xl font-extrabold  mt-10 text-green-500">
-                تم الحجز بنجاح
-              </div>
+              {Object.keys(props.userData).length &&
+              !props.userData.hasOwnProperty("desc") ? (
+                <div className="flex justify-end items-center  mt-10">
+                  <input
+                    type="reset"
+                    value="إلغاء"
+                    className="cursor-pointer mr-5 text-xl"
+                    // onClick={() => console.log(props.userData.desc)}
+                  />
+                  <input
+                    type="submit"
+                    value="إحجز الآن"
+                    className="text-2xl min-w-[10vw] py-2 px-4 rounded shadow-md cursor-pointer bg-blue-1 text-white"
+                  />
+                </div>
+              ) : (
+                <span>
+                  <div className="flex justify-end items-center  mt-10">
+                    <input
+                      disabled
+                      type="reset"
+                      value="إلغاء"
+                      className="cursor-pointer mr-5 text-xl"
+                      // onClick={() => console.log(props.userData)}
+                    />
+                    <input
+                      disabled
+                      type="submit"
+                      value="إحجز الآن"
+                      className="text-2xl min-w-[10vw] py-2 px-4 rounded shadow-md cursor-pointer bg-gray-400 text-white"
+                    />
+                  </div>
+                  <div className="w-full rounded-lg p-2 mt-2 text-xl  bg-green-600 text-white">
+                    ! قم بتسجيل الدخول كمستخدم للتمكن من حجز موعدك
+                  </div>
+                </span>
+              )}
             </form>
           </div>
         </div>

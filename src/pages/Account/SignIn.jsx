@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const SignIn = (props) => {
+  const [iamDoctor, setIamDoctor] = useState(false);
   // ---------- post old user ----------
   const [userPhone, setUserphone] = useState("");
 
@@ -15,7 +16,7 @@ const SignIn = (props) => {
   const handleSignIn = (e) => {
     e.preventDefault();
     {
-      validateUserInputs() && postuser();
+      validateUserInputs() && loginUser();
     }
   };
   // validateUserInputs fn
@@ -28,8 +29,8 @@ const SignIn = (props) => {
       return true;
     }
   };
-  // post user
-  async function postuser() {
+  // login user
+  async function loginUser() {
     await axios
       .post("https://egada.vercel.app/patient/logIn", {
         mobile: userPhone,
@@ -37,8 +38,8 @@ const SignIn = (props) => {
       .then((res) => {
         setIsDataRecived(true);
         setIsError(false);
-        // setID(res.data.body._id);
-        setID("6490bbb384adde82a88852fd"); //assume id has been returned =================================
+        setID(res.data.body);
+        // setID("6490bbb384adde82a88852fd"); //assume id has been returned =================================
       })
       .catch((error) => {
         setIsDataRecived(false);
@@ -47,37 +48,98 @@ const SignIn = (props) => {
   }
   // sendDataToLocalStorage
   const [isChecked, setIsChecked] = useState(false);
-  const [ID, setID] = useState();
-
+  const [ID, setID] = useState(null);
   useEffect(() => {
     async function sendDataToLocalStorage(ID) {
-      await axios
-        .get("https://egada.vercel.app/patient/" + ID)
-        .then((res) => {
-          props.setUserData(res.data.body);
-          if (isChecked) {
-            localStorage.setItem("userSignIn", JSON.stringify(res.data.body));
-          }
-        })
-        .catch((err) => {
-          console.log("err 0_0 ");
-          props.setUserData({
-            name: "7amood",
-            mobile: "774147610928",
-            isVerified: false,
-            dob: "2002-03-21T00:00:00.000Z",
-            status: true,
-            _id: "6490bbb384adde82a88852fd",
-            entryDate: "2023-06-19T20:33:55.023Z",
-            __v: 0,
-            otpId: "1d8d0c66-c484-484c-b5ce-6d5f59723e27",
-          }); //assume id has been returned =================================
-        });
+      {
+        iamDoctor
+          ? await axios
+              .get("https://egada.vercel.app/doctor/" + ID)
+              .then((res) => {
+                props.setUserData(res.data.body);
+                if (isChecked) {
+                  localStorage.setItem(
+                    "userSignIn",
+                    JSON.stringify(res.data.body)
+                  );
+                }
+              })
+              .catch((err) => {
+                console.log("err 0_0 ");
+                // props.setUserData({
+                //   name: "7amood",
+                //   mobile: "774147610928",
+                //   isVerified: false,
+                //   dob: "2002-03-21T00:00:00.000Z",
+                //   status: true,
+                //   _id: "6490bbb384adde82a88852fd",
+                //   entryDate: "2023-06-19T20:33:55.023Z",
+                //   __v: 0,
+                //   otpId: "1d8d0c66-c484-484c-b5ce-6d5f59723e27",
+                // }); //assume id has been returned =================================
+              })
+          : await axios
+              .get("https://egada.vercel.app/patient/" + ID)
+              .then((res) => {
+                props.setUserData(res.data.body);
+                if (isChecked) {
+                  localStorage.setItem(
+                    "userSignIn",
+                    JSON.stringify(res.data.body)
+                  );
+                }
+              })
+              .catch((err) => {
+                console.log("err 0_0 ");
+                // props.setUserData({
+                //   name: "7amood",
+                //   mobile: "774147610928",
+                //   isVerified: false,
+                //   dob: "2002-03-21T00:00:00.000Z",
+                //   status: true,
+                //   _id: "6490bbb384adde82a88852fd",
+                //   entryDate: "2023-06-19T20:33:55.023Z",
+                //   __v: 0,
+                //   otpId: "1d8d0c66-c484-484c-b5ce-6d5f59723e27",
+                // }); //assume id has been returned =================================
+              });
+      }
     }
     {
       isDataRecived && sendDataToLocalStorage(ID);
     }
   }, [isDataRecived]);
+  // ======================================================================
+  // ======================================================================
+  // ======================================================================
+  // ======================================================================
+  // ======================================================================
+  // ======================================================================
+
+  // handleSignInDoctor fn
+  const handleSignInDoctor = (e) => {
+    e.preventDefault();
+    loginDoctor();
+  };
+  // validateDocotorInputs fn
+  // login doctor
+  async function loginDoctor() {
+    await axios
+      .post("https://egada.vercel.app/doctor/logIn", {
+        mobile: userPhone,
+      })
+      .then((res) => {
+        setIsDataRecived(true);
+        setIsError(false);
+        setID(res.data.body);
+        // setID("6490bbb384adde82a88852fd"); //assume id has been returned =================================
+      })
+      .catch((error) => {
+        setIsDataRecived(false);
+        setIsError(true);
+      });
+  }
+  // sendDataToLocalStorageAsDoctor
 
   return (
     <React.Fragment>
@@ -133,13 +195,40 @@ const SignIn = (props) => {
                       className="cursor-pointer"
                     />
                   </div>
+
+                  <div className="text-right">
+                    <label
+                      className="inline-block pr-2 cursor-pointer"
+                      htmlFor="ٌRememberIamDoctor"
+                    >
+                      أنا طبيب
+                    </label>
+                    <input
+                      type="checkbox"
+                      onChange={(e) => {
+                        setIamDoctor(e.target.checked);
+                      }}
+                      id="ٌRememberIamDoctor"
+                      className="cursor-pointer"
+                    />
+                  </div>
                 </div>
-                <button
-                  className="my-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide"
-                  onClick={handleSignIn}
-                >
-                  تسجيل الدخول
-                </button>
+                {iamDoctor ? (
+                  <button
+                    className="my-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide"
+                    onClick={handleSignInDoctor}
+                  >
+                    تسجيل دخول طبيب
+                  </button>
+                ) : (
+                  <button
+                    className="my-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide"
+                    onClick={handleSignIn}
+                  >
+                    تسجيل دخول مستخدم
+                  </button>
+                )}
+
                 {isError && (
                   <div className="text-center text-red-600">
                     بيانات غير صحيحة

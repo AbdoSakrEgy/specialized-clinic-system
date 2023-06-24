@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = (props) => {
+  // ---------- post new doctor ----------
+  const [department, setDepartment] = useState("");
+  const [description, setDescription] = useState("");
   // ---------- post new user ----------
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
@@ -19,6 +22,8 @@ const SignUp = (props) => {
   const [isOTPtrue, setIsOTPtrue] = useState(false);
   const [isUserPosted, setIsUserPosted] = useState(false);
 
+  const [iamdoctor, setIamdoctor] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   // handleSubmit1 ---------------------
   const handleSubmit1 = (e) => {
     e.preventDefault();
@@ -50,78 +55,141 @@ const SignUp = (props) => {
   }
   // sendOTP
   async function sendOTP() {
-    await axios
-      .post("https://egada.vercel.app/patient/resendOtp", {
-        mobile: userPhone,
-      })
-      .then((res) => {
-        setIsOTPsended(true);
-        setIsError(false);
-      })
-      .catch((err) => {
-        setIsOTPsended(true); // assume OTP sended =================================
-        setIsError(true);
-      });
+    if (iamdoctor) {
+      await axios
+        .post("https://egada.vercel.app/doctor/resendOtp", {
+          mobile: userPhone,
+        })
+        .then((res) => {
+          setIsOTPsended(true);
+          setIsError(false);
+        })
+        .catch((err) => {
+          console.log("sendOTP to doctor by assume otp senede");
+          setIsOTPsended(true); // assume OTP sended =================================
+          setIsError(true);
+        });
+    } else {
+      await axios
+        .post("https://egada.vercel.app/patient/resendOtp", {
+          mobile: userPhone,
+        })
+        .then((res) => {
+          setIsOTPsended(true);
+          setIsError(false);
+        })
+        .catch((err) => {
+          setIsOTPsended(true); // assume OTP sended =================================
+          setIsError(true);
+        });
+    }
   }
 
-  // handleSubmit2 ---------------------
-  const handleSubmit2 = (e) => {
+  // verifyOTP then post user or doctor
+  async function verifyOTP(e) {
     e.preventDefault();
-    verifyOTP();
-  };
+    setIsOTPtrue(true);
+    if (isOTPtrue == true && iamdoctor == true) {
+      console.log("post doctor");
+      postDoctor();
+    } else if (isOTPtrue == true && iamdoctor == false) {
+      console.log("post user");
+      postUser();
+    }
+  }
 
-  // verifyOTP
-  async function verifyOTP() {
+  // verfyOTP for Patient
+  async function verfyOTPforPatient() {
     await axios
       .post("https://egada.vercel.app/patient/verifyOtp", {
         mobile: userPhone,
         otpCode: userVerficitionCode,
       })
       .then((res) => {
-        console.log("verifyOTP fn done^_^", res.data);
         setIsOTPtrue(true);
         setIsError(false);
         setUserVerficitionCodeErrorMessage("");
       })
       .catch((err) => {
-        console.log("verifyOTP fn error!", err);
         setIsOTPtrue(true); // assume  OTP true =================================
-        setIsError(true);   // assume  OTP true =================================
-        setUserVerficitionCodeErrorMessage("!خطأ في رمز التحقق");
+        setIsError(true); // assume  OTP true =================================
+        setUserVerficitionCodeErrorMessage(""); // assume  OTP true =================================
       });
   }
-
-  // isUserPosted
-  const [isChecked, setIsChecked] = useState(false);
-
+  // verfyOTP for Doctor
+  async function verfyOTPforDoctor() {
+    await axios
+      .post("https://egada.vercel.app/doctor/verifyOtp", {
+        mobile: userPhone,
+        otpCode: userVerficitionCode,
+      })
+      .then((res) => {
+        setIsOTPtrue(true);
+        setIsError(false);
+        setUserVerficitionCodeErrorMessage("");
+      })
+      .catch((err) => {
+        setIsOTPtrue(true); // assume  OTP true =================================
+        setIsError(true); // assume  OTP true =================================
+        setUserVerficitionCodeErrorMessage(""); // assume  OTP true =================================
+      });
+  }
+  // post user
+  async function postUser() {
+    await axios
+      .post("https://egada.vercel.app/patient", {
+        name: userName,
+        mobile: userPhone,
+        otpCode: "03-21-2002",
+      })
+      .then((res) => {
+        console.log("postUser fn done^_^", res.data.body);
+        setIsUserPosted(true);
+        setIsError(false);
+        // send data to localstorage
+        props.setUserData(res.data.body);
+        isChecked &&
+          localStorage.setItem("userSignUp", JSON.stringify(res.data.body));
+      })
+      .catch((err) => {
+        console.log("postUser fn error!", err);
+        setIsUserPosted(true); // assume user posted =================================
+        setIsError(true);
+      });
+  }
+  // post doctor
+  async function postDoctor() {
+    await axios
+      .post("https://egada.vercel.app/doctor/", {
+        name: userName,
+        mobile: userPhone,
+        dept: department,
+        address: "طنطا-الغربية",
+        fee: "160",
+        desc: description,
+      })
+      .then((res) => {
+        setIsUserPosted(true);
+        setIsError(false);
+        console.log("post doctoooooooor");
+        console.log(res.data.body);
+        // send data to localstorage
+        props.setUserData(res.data.body);
+        isChecked &&
+          localStorage.setItem("userSignUp", JSON.stringify(res.data.body));
+      })
+      .catch((err) => {
+        setIsUserPosted(false);
+        setIsError(true);
+      });
+  }
+  // get all departments
+  const [depArr, setDepArr] = useState([]);
   useEffect(() => {
-    async function postUser() {
-      await axios
-        .post("https://egada.vercel.app/patient", {
-          name: userName,
-          mobile: userPhone,
-          otpCode: "03-21-2002",
-        })
-        .then((res) => {
-          console.log("postUser fn done^_^", res.data.body);
-          setIsUserPosted(true);
-          setIsError(false);
-          // send data to localstorage
-          props.setUserData(res.data.body);
-          isChecked &&
-            localStorage.setItem("userSignUp", JSON.stringify(res.data.body));
-        })
-        .catch((err) => {
-          console.log("postUser fn error!", err);
-          setIsUserPosted(true); // assume user posted =================================
-          setIsError(true);
-        });
-    }
-    {
-      isOTPtrue && postUser();
-    }
-  }, [isOTPtrue]);
-
+    axios.get("https://egada.vercel.app/lookup/depts").then((res) => {
+      setDepArr(res.data.body);
+    });
+  });
   return (
     <React.Fragment>
       {isUserPosted ? (
@@ -166,7 +234,7 @@ const SignUp = (props) => {
                       <label className="label">رقم الهاتف</label>
                       <input
                         type="number"
-                        className="ourInput mb-10"
+                        className="ourInput"
                         value={userPhone}
                         onChange={(e) => {
                           setUserPhone(e.target.value);
@@ -175,6 +243,70 @@ const SignUp = (props) => {
                       <div className="text-right text-red-600">
                         {userPhoneErrorMessage}
                       </div>
+                    </div>
+                    {iamdoctor && (
+                      <div>
+                        <div>
+                          <label className="label">التخصص</label>
+                          <select
+                            required
+                            defaultValue={" "}
+                            name=" "
+                            className="AppiontmentInput"
+                            onChange={(e) => {
+                              setDepartment(e.target.value);
+                            }}
+                          >
+                            <option value="" hidden></option>
+                            {depArr.map((item) => (
+                              <option key={item._id} value={item._id}>{item.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="label">نبذة عن الطبيب</label>
+                          <input
+                            type="text"
+                            className="ourInput mb-5"
+                            value={description}
+                            onChange={(e) => {
+                              setDescription(e.target.value);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <div className="text-right">
+                      <label
+                        className="inline-block pr-2 cursor-pointer"
+                        htmlFor="RememberMeCheckBoxSingUp"
+                      >
+                        تذكرني
+                      </label>
+                      <input
+                        id="RememberMeCheckBoxSingUp"
+                        type="checkbox"
+                        onChange={(e) => {
+                          setIsChecked(e.target.checked);
+                        }}
+                        className="cursor-pointer"
+                      />
+                    </div>
+                    <div className="text-right">
+                      <label
+                        className="inline-block pr-2 pt-2 cursor-pointer"
+                        htmlFor="checkBoxIamDoctor"
+                      >
+                        أنا طبيب
+                      </label>
+                      <input
+                        id="checkBoxIamDoctor"
+                        type="checkbox"
+                        onChange={(e) => {
+                          setIamdoctor(e.target.checked);
+                        }}
+                        className="cursor-pointer"
+                      />
                     </div>
                     <button
                       onClick={handleSubmit1}
@@ -199,23 +331,9 @@ const SignUp = (props) => {
                     <div className="text-right text-red-600">
                       {userVerficitionCodeErrorMessage}
                     </div>
-                    <div className="text-right">
-                      <label
-                        className="inline-block pr-2 mt-10 cursor-pointer"
-                        htmlFor="RememberMeCheckBoxSingUp"
-                      >
-                        تذكرني
-                      </label>
-                      <input
-                        type="checkbox"
-                        onChange={(e) => {
-                          setIsChecked(e.target.checked);
-                        }}
-                        className="cursor-pointer"
-                      />
-                    </div>
+
                     <button
-                      onClick={handleSubmit2}
+                      onClick={verifyOTP}
                       className="mt-4 w-full bg-blue-1 text-white py-2 rounded-md text-lg tracking-wide"
                     >
                       تأكيد

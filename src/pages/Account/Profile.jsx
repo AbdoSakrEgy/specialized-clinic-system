@@ -1,30 +1,42 @@
 import React from "react";
 import { useState } from "react";
 import "../../css files/App.css";
+import axios from "axios";
 
 const Profile = (props) => {
   // ---------- user data ----------
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [age, setAge] = useState("");
-  const [password, setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [truePassword, setTruePassword] = useState("12345");
+
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [age, setAge] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [newPassword, setNewPassword] = useState("");
+  // const [truePassword, setTruePassword] = useState("12345");
 
   const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [phoneNumberErrorMessage, setPhoneNumberErrorMessage] = useState("");
   const [addressErrorMessage, setAddressErrorMessage] = useState("");
-  const [ageErrorMessage, setAgeErrorMessage] = useState("");
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState("");
+  // const [ageErrorMessage, setAgeErrorMessage] = useState("");
+  // const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  // const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState("");
 
   // ---------- handleUpdatedData fn ----------
   const [isDataChanged, setIsDataChanged] = useState(false);
   const handleUpdatedData = (e) => {
     e.preventDefault();
+    // {
+    //   props.userData.hasOwnProperty("des")
+    //     ? axios.put(
+    //         "https://egada.vercel.app/doctor/update/"+props.userData._id,
+    //         {
+
+    //         }
+    //       )
+    //     : "";
+    // }
   };
 
   return (
@@ -44,13 +56,6 @@ const Profile = (props) => {
                   className="userDataInput"
                   // defaultValue={props.userData.name}
                   value={props.userData.name}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    {
-                      if (e.target.value != e.target.defaultValue)
-                        setIsDataChanged(true);
-                    }
-                  }}
                 />
                 <label htmlFor="username" className="userDataHeader">
                   الاسم
@@ -67,13 +72,6 @@ const Profile = (props) => {
                   className="userDataInput"
                   // defaultValue={props.userData.mobile}
                   value={props.userData.mobile}
-                  onChange={(e) => {
-                    setPhoneNumber(e.target.value);
-                    {
-                      if (e.target.value != e.target.defaultValue)
-                        setIsDataChanged(true);
-                    }
-                  }}
                 />
                 <label htmlFor="phonenumber" className="userDataHeader">
                   رقم الهاتف
@@ -105,7 +103,7 @@ const Profile = (props) => {
                 {emailErrorMessage}
               </div> */}
 
-              <div className="hv-bc mt-14">
+              {/* <div className="hv-bc mt-14">
                 <input
                   type="number"
                   id="userAge"
@@ -125,9 +123,9 @@ const Profile = (props) => {
               </div>
               <div className="text-end pr-48 text-red-600">
                 {ageErrorMessage}
-              </div>
+              </div> */}
 
-              <div className="hv-bc mt-14">
+              {/* <div className="hv-bc mt-14">
                 <input
                   type="text"
                   id="userAddress"
@@ -147,7 +145,7 @@ const Profile = (props) => {
               </div>
               <div className="text-end pr-48 text-red-600">
                 {addressErrorMessage}
-              </div>
+              </div> */}
 
               {/* <div className="hv-bc mt-14">
                 <div className="relative userDataInput p-0">
@@ -209,31 +207,11 @@ const Profile = (props) => {
             </div>
             <div className="flex justify-end mt-14">
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-                className="text-sm font-bold py-2 px-8 mr-5 rounded shadow-md cursor-default bg-[#e2e8ea] text-[#7f8488]"
+                onClick={handleUpdatedData}
+                className="text-sm font-bold py-2 px-8 mr-5 rounded shadow-md cursor-default hover:cursor-pointer bg-blue-1 text-white"
               >
-                إلغاء
+                تحديث البيانات
               </button>
-              {/* isDataChanged */}
-              {false ? (
-                <button
-                  onClick={handleUpdatedData}
-                  className="text-sm font-bold py-2 px-8 rounded shadow-md bg-blue-1 text-white"
-                >
-                  حفظ
-                </button>
-              ) : (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                  className="text-sm font-bold py-2 px-8 rounded cursor-default bg-[#e2e8ea] text-[#7f8488]"
-                >
-                  حفظ
-                </button>
-              )}
             </div>
           </div>
         </form>

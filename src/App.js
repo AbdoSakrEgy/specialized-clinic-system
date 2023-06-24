@@ -24,14 +24,16 @@ function App() {
     const localedUserUp=localStorage.getItem('userSignUp');
 
     if(localedUserIn){
+      // console.log("userData-localedUserIn:",userData);
       const foundUser=JSON.parse(localedUserIn);
       setUserData(foundUser);
     }else if(localedUserUp){
+      // console.log("userData-localedUserUp:",userData);
       const foundUser=JSON.parse(localedUserUp);
       setUserData(foundUser);
     }else{
+      // console.log("userData:",userData);
     }
-    // console.log("userData:",userData);
   },[])
 
   return (
@@ -39,7 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppHeader userData={userData} setUserData={setUserData}/>}>
-            <Route index element={<Home />} />
+            <Route index element={<Home userData={userData} setUserData={setUserData}/>} />
             
             <Route path='/VisitsHistory' element={<VisitsHistory userData={userData}/>}/>
             <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView/>}/>
