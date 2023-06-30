@@ -139,7 +139,7 @@ export default function AppointmentSection(props) {
                 </select>
               </div>
 
-              <div className="w-full">
+              {/* <div className="w-full">
                 <div className="mb-1 font-semibold">نوع الكشف</div>
                 <select
                   required
@@ -154,7 +154,7 @@ export default function AppointmentSection(props) {
                   <option value="كشف جديد">كشف جديد</option>
                   <option value="إعادة كشف">إعادة كشف</option>
                 </select>
-              </div>
+              </div> */}
 
               <div className="w-full flex justify-between">
                 <div className="w-full mr-7 flex flex-col">

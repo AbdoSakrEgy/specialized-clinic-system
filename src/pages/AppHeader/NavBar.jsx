@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Link2 } from "react-scroll";
 import { FaStethoscope } from "react-icons/fa";
 import Avatar from "./Avatar";
 
 function NavBar(props) {
-  // console.log("userData length:",Object.keys(props.userData).length);
   return (
     <React.Fragment>
       <nav className="hv-bc h-20 px-10 shadow-md sticky top-0 z-50 bg-white">

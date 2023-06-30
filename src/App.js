@@ -14,6 +14,7 @@ import Profile from './pages/Account/Profile';
 import VisitsHistory from './pages/visits history/VisitsHistory';
 
 import VisitsHistoryDoctorView from "./pages/visits history/VistsHistoryDoctorView";
+import TimeManagement from "./pages/TimeManagement/TimeManagement";
 
 function App() {
   // logedin user data
@@ -21,18 +22,10 @@ function App() {
   // localed data
   useEffect(()=>{
     const localedUserIn=localStorage.getItem('userSignIn');
-    const localedUserUp=localStorage.getItem('userSignUp');
-
+    
     if(localedUserIn){
-      // console.log("userData-localedUserIn:",userData);
-      const foundUser=JSON.parse(localedUserIn);
-      setUserData(foundUser);
-    }else if(localedUserUp){
-      // console.log("userData-localedUserUp:",userData);
-      const foundUser=JSON.parse(localedUserUp);
-      setUserData(foundUser);
-    }else{
-      // console.log("userData:",userData);
+        const foundUser=JSON.parse(localedUserIn);
+        setUserData(foundUser);
     }
   },[])
 
@@ -44,7 +37,9 @@ function App() {
             <Route index element={<Home userData={userData} setUserData={setUserData}/>} />
             
             <Route path='/VisitsHistory' element={<VisitsHistory userData={userData}/>}/>
-            <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView/>}/>
+            <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView userData={userData} setUserData={setUserData}/>}/>
+            
+            <Route path='/timeManagement' element={<TimeManagement userData={userData} setUserData={setUserData}/>} />
 
             <Route path='/bandAid/breaking' element={<Breaking/>} />
             <Route path='/bandAid/drowing' element={<Drowing/>} />
@@ -54,7 +49,7 @@ function App() {
             <Route path='/signup' element={<SignUp userData={userData} setUserData={setUserData}/>} />
             <Route path='/signin' element={<SignIn userData={userData} setUserData={setUserData}/>} />
 
-            <Route path='/profile' element={<Profile userData={userData} setUserData={setUserData} />} />
+            {/* <Route path='/profile' element={<Profile userData={userData} setUserData={setUserData} />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>

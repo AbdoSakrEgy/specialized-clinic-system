@@ -65,7 +65,9 @@ const SignIn = (props) => {
                 }
               })
               .catch((err) => {
-                console.log("err 0_0 ");
+                console.log("err 0_0 aaa");
+                console.log(ID);
+                console.log("err 0_0 aaa");
                 // props.setUserData({
                 //   name: "7amood",
                 //   mobile: "774147610928",
@@ -131,7 +133,7 @@ const SignIn = (props) => {
       .then((res) => {
         setIsDataRecived(true);
         setIsError(false);
-        setID(res.data.body);
+        setID(res.data.body._id);
         // setID("6490bbb384adde82a88852fd"); //assume id has been returned =================================
       })
       .catch((error) => {
@@ -201,7 +203,7 @@ const SignIn = (props) => {
                       className="inline-block pr-2 cursor-pointer"
                       htmlFor="ٌRememberIamDoctor"
                     >
-                      أنا طبيب
+                      طبيب
                     </label>
                     <input
                       type="checkbox"

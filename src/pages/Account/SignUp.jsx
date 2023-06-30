@@ -6,13 +6,17 @@ const SignUp = (props) => {
   // ---------- post new doctor ----------
   const [department, setDepartment] = useState("");
   const [description, setDescription] = useState("");
+  const [doctorGovern, setDoctorGovern] = useState("");
+  const [doctorDataMessage, setDoctorDataMessage] = useState("");
   // ---------- post new user ----------
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
+  const [userDate, setUserDate] = useState("");
   const [userVerficitionCode, setUserVerficitionCode] = useState("");
 
   const [userNameErrorMessage, setUserNameErrorMessage] = useState("");
   const [userPhoneErrorMessage, setUserPhoneErrorMessage] = useState("");
+  const [userDateErrorMessage, setUserDateErrorMessage] = useState("");
   const [userVerficitionCodeErrorMessage, setUserVerficitionCodeErrorMessage] =
     useState("");
 
@@ -27,10 +31,24 @@ const SignUp = (props) => {
   // handleSubmit1 ---------------------
   const handleSubmit1 = (e) => {
     e.preventDefault();
-    {
-      validateUserInputs() && sendOTP();
+    if (iamdoctor) {
+      if (validateUserInputs() && validateDoctorInputs()) {
+        sendOTP();
+      }
+    } else if (validateUserInputs()) {
+      sendOTP();
     }
   };
+  // validateDoctorInputs fn
+  function validateDoctorInputs() {
+    if (!department || !description || !doctorGovern) {
+      setDoctorDataMessage("من فضل أدخل البيانات");
+      return false;
+    } else {
+      setDoctorDataMessage("");
+      return true;
+    }
+  }
   // validateUserInputs fn
   function validateUserInputs() {
     if (!userName) {
@@ -65,7 +83,6 @@ const SignUp = (props) => {
           setIsError(false);
         })
         .catch((err) => {
-          console.log("sendOTP to doctor by assume otp senede");
           setIsOTPsended(true); // assume OTP sended =================================
           setIsError(true);
         });
@@ -85,15 +102,21 @@ const SignUp = (props) => {
     }
   }
 
+  // ==================================================================
+  // ==================================================================
+  // ==================================================================
+  // ==================================================================
+  // ==================================================================
+  // ==================================================================
+  // ==================================================================
+
   // verifyOTP then post user or doctor
-  async function verifyOTP(e) {
+  function verifyOTP(e) {
     e.preventDefault();
     setIsOTPtrue(true);
     if (isOTPtrue == true && iamdoctor == true) {
-      console.log("post doctor");
       postDoctor();
     } else if (isOTPtrue == true && iamdoctor == false) {
-      console.log("post user");
       postUser();
     }
   }
@@ -140,20 +163,21 @@ const SignUp = (props) => {
       .post("https://egada.vercel.app/patient", {
         name: userName,
         mobile: userPhone,
-        otpCode: "03-21-2002",
+        dob: "03-21-2002",
       })
       .then((res) => {
-        console.log("postUser fn done^_^", res.data.body);
         setIsUserPosted(true);
         setIsError(false);
+        console.log("res.data.body");
+        console.log(res.data.body);
         // send data to localstorage
         props.setUserData(res.data.body);
-        isChecked &&
-          localStorage.setItem("userSignUp", JSON.stringify(res.data.body));
+        if (isChecked) {
+          localStorage.setItem("userSignIn", JSON.stringify(res.data.body));
+        }
       })
       .catch((err) => {
-        console.log("postUser fn error!", err);
-        setIsUserPosted(true); // assume user posted =================================
+        setIsUserPosted(false);
         setIsError(true);
       });
   }
@@ -167,16 +191,20 @@ const SignUp = (props) => {
         address: "طنطا-الغربية",
         fee: "160",
         desc: description,
+        govern: doctorGovern,
       })
       .then((res) => {
         setIsUserPosted(true);
         setIsError(false);
-        console.log("post doctoooooooor");
-        console.log(res.data.body);
+        props.setUserData(res.data.body.result);
         // send data to localstorage
-        props.setUserData(res.data.body);
-        isChecked &&
-          localStorage.setItem("userSignUp", JSON.stringify(res.data.body));
+        if (isChecked) {
+          localStorage.setItem(
+            "userSignIn",
+            JSON.stringify(res.data.body.result)
+          );
+        } else {
+        }
       })
       .catch((err) => {
         setIsUserPosted(false);
@@ -247,6 +275,18 @@ const SignUp = (props) => {
                     {iamdoctor && (
                       <div>
                         <div>
+                          <label className="label">نبذة عن الطبيب</label>
+                          <input
+                            required
+                            type="text"
+                            className="ourInput mb-5"
+                            value={description}
+                            onChange={(e) => {
+                              setDescription(e.target.value);
+                            }}
+                          />
+                        </div>
+                        <div>
                           <label className="label">التخصص</label>
                           <select
                             required
@@ -259,23 +299,57 @@ const SignUp = (props) => {
                           >
                             <option value="" hidden></option>
                             {depArr.map((item) => (
-                              <option key={item._id} value={item._id}>{item.name}</option>
+                              <option key={item._id} value={item._id}>
+                                {item.name}
+                              </option>
                             ))}
                           </select>
                         </div>
                         <div>
-                          <label className="label">نبذة عن الطبيب</label>
-                          <input
-                            type="text"
-                            className="ourInput mb-5"
-                            value={description}
+                          <label className="label">المحافظة</label>
+                          <select
+                            required
+                            className="AppiontmentInput"
                             onChange={(e) => {
-                              setDescription(e.target.value);
+                              setDoctorGovern(e.target.value);
                             }}
-                          />
+                          >
+                            <option value="" hidden></option>
+                            <option value="القاهرة">القاهرة</option>
+                            <option value="الإسكندرية">الأسكندرية</option>
+                            <option value="الجيزة">الجيزة</option>
+                            <option value="الدقهلية">الدقهلية</option>
+                            <option value="الدقهلية">الدقهلية</option>
+                            <option value="المنوفية">المنوفية</option>
+                            <option value="القليوبية">القليوبية</option>
+                            <option value="البحيرة">البحيرة</option>
+                            <option value="الغربية">الغربية</option>
+                            <option value="بور سعيد">بور سعيد</option>
+                            <option value="دمياط">دمياط</option>
+                            <option value="الإسماعيلية">الإسماعيلية</option>
+                            <option value="السويس">السويس</option>
+                            <option value="كفر الشيخ">كفر الشيخ</option>
+                            <option value="الفيوم">الفيوم</option>
+                            <option value="بني سويف">بني سويف</option>
+                            <option value="مطروح">مطروح</option>
+                            <option value="شمال سيناء">شمال سيناء</option>
+                            <option value="جنوب سيناء">جنوب سيناء</option>
+                            <option value="المنيا">المنيا</option>
+                            <option value="أسيوط">أسيوط</option>
+                            <option value="سوهاج">سوهاج</option>
+                            <option value="قنا">قنا</option>
+                            <option value="البحر الأحمر">البحر الأحمر</option>
+                            <option value="الأقصر">الأقصر</option>
+                            <option value="أسوان">أسوان</option>
+                            <option value="الواحات">الواحات</option>
+                            <option value="الوادي الجديد">الوادي الجديد</option>
+                          </select>
                         </div>
                       </div>
                     )}
+                    <div className="text-right text-red-600">
+                      {doctorDataMessage}
+                    </div>
                     <div className="text-right">
                       <label
                         className="inline-block pr-2 cursor-pointer"
@@ -297,7 +371,7 @@ const SignUp = (props) => {
                         className="inline-block pr-2 pt-2 cursor-pointer"
                         htmlFor="checkBoxIamDoctor"
                       >
-                        أنا طبيب
+                        طبيب
                       </label>
                       <input
                         id="checkBoxIamDoctor"
@@ -341,11 +415,11 @@ const SignUp = (props) => {
                   </div>
                 )}
               </div>
-              {isError && (
+              {/* {isError && (
                 <div className="text-center pt-5 text-red-600">
                   خطأ تقني يرجي المحاولة لاحقا
                 </div>
-              )}
+              )} */}
             </div>
           </form>
           <span className="pt-5">
