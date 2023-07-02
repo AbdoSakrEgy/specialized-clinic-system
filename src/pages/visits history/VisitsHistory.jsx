@@ -86,7 +86,7 @@ export default function VisitsHistory(props) {
                           في الإنتظار
                         </td>
                         <td className="tdStyle">{props.userData.mobile}</td>
-                        <td className="tdStyle">{item.date}</td>
+                        <td className="tdStyle">{(item.date + "").slice(0, 10)}</td>
                         <td className="tdStyle">
                           {item.doctor.name}
                           <br />
@@ -102,7 +102,7 @@ export default function VisitsHistory(props) {
                           إنتهي
                         </td>
                         <td className="tdStyle">{props.userData.mobile}</td>
-                        <td className="tdStyle">{item.date}</td>
+                        <td className="tdStyle">{(item.date + "").slice(0, 10)}</td>
                         <td className="tdStyle">
                           {item.doctor.name}
                           <br />
@@ -118,7 +118,7 @@ export default function VisitsHistory(props) {
                           تم إلغائه
                         </td>
                         <td className="tdStyle">{props.userData.mobile}</td>
-                        <td className="tdStyle">{item.date}</td>
+                        <td className="tdStyle">{(item.date + "").slice(0, 10)}</td>
                         <td className="tdStyle">
                           {item.doctor.name}
                           <br />

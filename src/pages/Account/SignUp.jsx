@@ -196,14 +196,10 @@ const SignUp = (props) => {
       .then((res) => {
         setIsUserPosted(true);
         setIsError(false);
-        props.setUserData(res.data.body.result);
+        props.setUserData(res.data.body);
         // send data to localstorage
         if (isChecked) {
-          localStorage.setItem(
-            "userSignIn",
-            JSON.stringify(res.data.body.result)
-          );
-        } else {
+          localStorage.setItem("userSignIn", JSON.stringify(res.data.body));
         }
       })
       .catch((err) => {

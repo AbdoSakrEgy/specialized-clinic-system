@@ -157,14 +157,23 @@ export default function Avatar(props) {
             </div> */}
             <hr className="border-gray-1" />
             {/* popover section 4 */}
-            {props.userData.hasOwnProperty("desc") && (
+            {props.userData.hasOwnProperty("desc") ? (
               <span>
                 <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
                   <Link to="/timeManagement">إدارة المواعيد</Link>
                 </div>
                 <hr className="border-gray-1" />
               </span>
-            )}
+            ) : (
+              // <span>
+              //   <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
+              //     <Link to="/ratedoctors">تقييم الإطباء</Link>
+              //   </div>
+              //   <hr className="border-gray-1" />
+              // </span>
+              ""
+            )
+            }
             {/* popover section 5 */}
             <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
               <Link to="/" onClick={handleSingOut}>

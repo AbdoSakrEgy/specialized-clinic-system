@@ -15,6 +15,7 @@ import VisitsHistory from './pages/visits history/VisitsHistory';
 
 import VisitsHistoryDoctorView from "./pages/visits history/VistsHistoryDoctorView";
 import TimeManagement from "./pages/TimeManagement/TimeManagement";
+import RateDoctors from "./pages/DoctorsRate/RateDoctors";
 
 function App() {
   // logedin user data
@@ -40,6 +41,7 @@ function App() {
             <Route path='/VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView userData={userData} setUserData={setUserData}/>}/>
             
             <Route path='/timeManagement' element={<TimeManagement userData={userData} setUserData={setUserData}/>} />
+            <Route path='/ratedoctors' element={<RateDoctors userData={userData} setUserData={setUserData}/>} />
 
             <Route path='/bandAid/breaking' element={<Breaking/>} />
             <Route path='/bandAid/drowing' element={<Drowing/>} />

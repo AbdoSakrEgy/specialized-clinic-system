@@ -48,21 +48,43 @@ export default function AppointmentSection(props) {
     }
     getAllDoctors();
   }, []);
-  // get avilable times
-  const [avilableTimes, setAbilableTimes] = useState(null);
-  useEffect(() => {
-    async function getAvilableTimes() {
+  // get all schedules of selected doctor
+  const [allSchedulesArr, setAllSchedulesArr] = useState([]);
+  const [daynum, setDaynum] = useState();
+
+  async function getAllSchedules() {
+    if (theDoctorID) {
       await axios
         .get("https://egada.vercel.app/doctor/schedules/" + theDoctorID)
         .then((res) => {
+          setAllSchedulesArr(res.data.body);
+          console.log("getAllSchedules");
           console.log(res.data.body);
-          console.log(avilableTimes);
-          setAbilableTimes(res.data.body);
         })
         .catch((err) => console.log(err));
     }
-    if (theDate != null) getAvilableTimes();
-  }, [theDate]);
+  }
+
+  useEffect(() => {
+    getAllSchedules();
+    console.log("useEffect");
+    console.log(allSchedulesArr);
+  }, [theDoctorID]);
+  // get avilable times
+  // const [avilableTimes, setAbilableTimes] = useState(null);
+  // useEffect(() => {
+  //   async function getAvilableTimes() {
+  //     await axios
+  //       .get("https://egada.vercel.app/doctor/schedules/" + theDoctorID)
+  //       .then((res) => {
+  //         console.log(res.data.body);
+  //         console.log(avilableTimes);
+  //         setAbilableTimes(res.data.body);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  //   if (theDate != null) getAvilableTimes();
+  // }, [theDate]);
 
   return (
     <React.Fragment>
@@ -160,9 +182,7 @@ export default function AppointmentSection(props) {
                 <div className="w-full mr-7 flex flex-col">
                   <div className="mb-1 font-semibold">الأوقات المتاحة</div>
                   <div className="AppiontmentInput hover:cursor-default h-full">
-                    {avilableTimes
-                      ? ` من ${avilableTimes[0].fromHr} إلي ${avilableTimes[0].toHr}`
-                      : ""}
+                    {theDate ? "" : ""}
                   </div>
                 </div>
                 <div className="w-full">
@@ -173,6 +193,10 @@ export default function AppointmentSection(props) {
                     className="AppiontmentInput"
                     onChange={(e) => {
                       setTheDate(e.target.value);
+                      console.log("getDay()");
+                      const d = new Date(e.target.value);
+                      let day1 = d.getDay();
+                      console.log(day1);
                     }}
                   />
                 </div>

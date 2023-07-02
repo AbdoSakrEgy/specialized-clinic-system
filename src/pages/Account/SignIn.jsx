@@ -39,7 +39,6 @@ const SignIn = (props) => {
         setIsDataRecived(true);
         setIsError(false);
         setID(res.data.body);
-        // setID("6490bbb384adde82a88852fd"); //assume id has been returned =================================
       })
       .catch((error) => {
         setIsDataRecived(false);
