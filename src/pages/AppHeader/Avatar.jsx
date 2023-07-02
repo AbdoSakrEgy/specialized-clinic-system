@@ -172,8 +172,7 @@ export default function Avatar(props) {
               //   <hr className="border-gray-1" />
               // </span>
               ""
-            )
-            }
+            )}
             {/* popover section 5 */}
             <div className="cursor-pointer py-3 px-5 text-white bg-[#016EDF] hover:bg-blue-1 hover:text-white">
               <Link to="/" onClick={handleSingOut}>

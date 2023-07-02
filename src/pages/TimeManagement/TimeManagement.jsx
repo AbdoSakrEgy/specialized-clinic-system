@@ -66,7 +66,7 @@ export default function TimeManagement(props) {
     }
   }
 
-  useEffect(async() => {
+  useEffect(() => {
     fillDaysArr();
   }, []);
 
