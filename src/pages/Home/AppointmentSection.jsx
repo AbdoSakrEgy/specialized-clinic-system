@@ -4,17 +4,10 @@ import "tw-elements";
 
 export default function AppointmentSection(props) {
   // Appointment data
-  const [patientName, setPatientName] = useState(null);
-  const [patientPhone, setPatientPhone] = useState(null);
-  const [theDepartment, setTheDepartment] = useState(null);
-  const [theDoctorID, setTheDoctorID] = useState(null);
-  const [theDetectionType, setTheDetectionType] = useState(null);
+  const [theDoctorID, setTheDoctorID] = useState("");
   const [theDate, setTheDate] = useState(null);
-  const [theAvailableTime, setTheAvailableTime] = useState(null);
-  const [thePaymentWay, setPaymentWay] = useState(null);
   // handleSubmit fn
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     async function postAppointment() {
       await axios
         .post("https://egada.vercel.app/reservation", {
@@ -26,8 +19,10 @@ export default function AppointmentSection(props) {
         .then((res) => {
           console.log(res.data);
           document.getElementById("appointmentform").reset();
+          setTheDate(null);
           alert("تم الحجز بنجاح");
-        });
+        })
+        .catch((err) => console.log(err));
     }
     if (Object.keys(props.userData).length) {
       postAppointment();
@@ -35,6 +30,7 @@ export default function AppointmentSection(props) {
       alert("يرجي تسجيل الدخول أولا!");
     }
   };
+
   // get all doctors
   const [allDoctorsArray, setAllDoctorsArray] = useState([]);
   useEffect(() => {
@@ -48,43 +44,53 @@ export default function AppointmentSection(props) {
     }
     getAllDoctors();
   }, []);
+
   // get all schedules of selected doctor
   const [allSchedulesArr, setAllSchedulesArr] = useState([]);
-  const [daynum, setDaynum] = useState();
-
-  async function getAllSchedules() {
-    if (theDoctorID) {
+  useEffect(() => {
+    async function selectedDoctorTimes() {
       await axios
         .get("https://egada.vercel.app/doctor/schedules/" + theDoctorID)
         .then((res) => {
           setAllSchedulesArr(res.data.body);
-          console.log("getAllSchedules");
-          console.log(res.data.body);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }
-
-  useEffect(() => {
-    getAllSchedules();
-    console.log("useEffect");
-    console.log(allSchedulesArr);
+    if (theDoctorID.length != 0) {
+      selectedDoctorTimes();
+    }
   }, [theDoctorID]);
-  // get avilable times
-  // const [avilableTimes, setAbilableTimes] = useState(null);
-  // useEffect(() => {
-  //   async function getAvilableTimes() {
-  //     await axios
-  //       .get("https://egada.vercel.app/doctor/schedules/" + theDoctorID)
-  //       .then((res) => {
-  //         console.log(res.data.body);
-  //         console.log(avilableTimes);
-  //         setAbilableTimes(res.data.body);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  //   if (theDate != null) getAvilableTimes();
-  // }, [theDate]);
+
+  const [selectedDayData, setSelectedDayData] = useState({});
+  const [dayNumber, setDayNumber] = useState(null);
+  useEffect(() => {
+    if (theDoctorID.length != 0 && theDate != null) {
+      for (let i = 0; i < allSchedulesArr.length; i++) {
+        if (allSchedulesArr[i].day === dayNumber) {
+          setSelectedDayData(allSchedulesArr[i]);
+          break;
+        } else {
+          setSelectedDayData({});
+        }
+      }
+    }
+  }, [theDate, allSchedulesArr, dayNumber]);
+
+  //disable past dates in datepicker
+  console.log("date");
+  var date = new Date();
+  var tday = date.getDate();
+  var tmonth = date.getMonth() + 1;
+  var tyear = date.getUTCFullYear();
+  if (tday < 10) {
+    tday = "0" + tday;
+  }
+  if (tmonth < 10) {
+    tmonth = "0" + tmonth;
+  }
+  var minDate = tyear + "-" + tmonth + "-" + tday;
 
   return (
     <React.Fragment>
@@ -101,7 +107,14 @@ export default function AppointmentSection(props) {
           <div className="h-fit w-1/2">
             <form
               id="appointmentform"
-              onSubmit={handleSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (Object.keys(selectedDayData).length) {
+                  handleSubmit();
+                } else {
+                  alert("لا يمكن حجز موعد في هذا اليوم");
+                }
+              }}
               className="AppiontmentForm"
             >
               <div className="w-full">
@@ -110,7 +123,6 @@ export default function AppointmentSection(props) {
                   value={props.userData.name}
                   type="text"
                   className="AppiontmentInput text-right"
-                  onChange={(e) => setPatientName(e.target.value)}
                 />
               </div>
 
@@ -120,27 +132,8 @@ export default function AppointmentSection(props) {
                   value={props.userData.mobile}
                   type="number"
                   className="AppiontmentInput text-right"
-                  onChange={(e) => setPatientPhone(e.target.value)}
                 />
               </div>
-
-              {/* <div className="w-full">
-                <div className="mb-1 font-semibold">إختر التخصص</div>
-                <select
-                  required
-                  defaultValue={" "}
-                  name=""
-                  className="AppiontmentInput"
-                  onChange={(e) => {
-                    setTheDepartment(e.target.value);
-                  }}
-                >
-                  <option value="" hidden></option>
-                  <option value="dentist">أسنان</option>
-                  <option value="internist">باطنة</option>
-                  <option value="ENT">أنف وأذن وحنجرة</option>
-                </select>
-              </div> */}
               <div className="w-full">
                 <div className="mb-1 font-semibold">إختر الطبيب</div>
                 <select
@@ -160,29 +153,41 @@ export default function AppointmentSection(props) {
                   ))}
                 </select>
               </div>
-
-              {/* <div className="w-full">
-                <div className="mb-1 font-semibold">نوع الكشف</div>
-                <select
-                  required
-                  defaultValue={" "}
-                  name="available time"
-                  className="AppiontmentInput"
-                  onChange={(e) => {
-                    setTheDetectionType(e.target.value);
-                  }}
-                >
-                  <option value="" hidden></option>
-                  <option value="كشف جديد">كشف جديد</option>
-                  <option value="إعادة كشف">إعادة كشف</option>
-                </select>
-              </div> */}
-
               <div className="w-full flex justify-between">
                 <div className="w-full mr-7 flex flex-col">
                   <div className="mb-1 font-semibold">الأوقات المتاحة</div>
-                  <div className="AppiontmentInput hover:cursor-default h-full">
-                    {theDate ? "" : ""}
+                  <div className="AppiontmentInput flex justify-end items-center text-base hover:cursor-default h-full">
+                    {theDoctorID.length != 0 ? (
+                      theDate != null ? (
+                        Object.keys(selectedDayData).length === 0 ? (
+                          "لاتوجد أوقات متاحة لهذا اليوم"
+                        ) : (
+                          <span>
+                            <span> من </span>
+                            <span>{selectedDayData.fromHr}</span>
+                            <span> إلي </span>
+                            <span>{selectedDayData.toHr}</span>
+                          </span>
+                        )
+                      ) : (
+                        ""
+                      )
+                    ) : (
+                      ""
+                    )}
+                    {/* 
+                    {theDoctorID.length != 0 && theDate != null
+                      ? (Object.keys(selectedDayData).length = 0 ? (
+                          "لاتوجد أوقات متاحة لهذا اليوم"
+                        ) : (
+                          <span>
+                            <span> من </span>
+                            <span>{selectedDayData.fromHr}</span>
+                            <span> إلي </span>
+                            <span>{selectedDayData.toHr}</span>
+                          </span>
+                        ))
+                      : ""} */}
                   </div>
                 </div>
                 <div className="w-full">
@@ -190,13 +195,17 @@ export default function AppointmentSection(props) {
                   <input
                     required
                     type="date"
+                    min={minDate}
                     className="AppiontmentInput"
                     onChange={(e) => {
                       setTheDate(e.target.value);
-                      console.log("getDay()");
                       const d = new Date(e.target.value);
-                      let day1 = d.getDay();
-                      console.log(day1);
+                      const dayNum = d.getDay();
+                      if (dayNum === 0) {
+                        setDayNumber(7);
+                      } else {
+                        setDayNumber(dayNum);
+                      }
                     }}
                   />
                 </div>
@@ -209,9 +218,6 @@ export default function AppointmentSection(props) {
                   defaultValue={" "}
                   name=" "
                   className="AppiontmentInput"
-                  onChange={(e) => {
-                    setPaymentWay(e.target.value);
-                  }}
                 >
                   <option value="" hidden></option>
                   <option value="عند الطبيب">عند الطبيب</option>
@@ -224,7 +230,9 @@ export default function AppointmentSection(props) {
                     type="reset"
                     value="إلغاء"
                     className="cursor-pointer mr-5 text-xl"
-                    // onClick={() => console.log(props.userData.desc)}
+                    onClick={() => {
+                      setTheDate(null);
+                    }}
                   />
                   <input
                     type="submit"
@@ -240,7 +248,6 @@ export default function AppointmentSection(props) {
                       type="reset"
                       value="إلغاء"
                       className="cursor-pointer mr-5 text-xl"
-                      // onClick={() => console.log(props.userData)}
                     />
                     <input
                       disabled

@@ -60,6 +60,11 @@
     .thStyle{
         @apply px-6 py-4 text-right;
     }
+    /* dayCardTimeManagement */
+    .dayCardTimeManagement{
+        @apply flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2;
+    }
+
 }
 
 .switch {

@@ -14,12 +14,11 @@ export default function TimeManagement(props) {
   const [day7Data, setDay7Data] = useState({});
 
   async function fillDaysArr() {
-    // setDaysArr();
     await axios
       .get("https://egada.vercel.app/doctor/schedules/" + props.userData._id)
       .then((res) => {
         setDaysArr(res.data.body);
-        fillDays();
+        fillDays(res.data.body);
         console.log(daysArr);
       })
       .catch((err) => {
@@ -27,7 +26,7 @@ export default function TimeManagement(props) {
       });
   }
 
-  function fillDays() {
+  function fillDays(myarr) {
     setDay1Data({});
     setDay2Data({});
     setDay3Data({});
@@ -35,29 +34,29 @@ export default function TimeManagement(props) {
     setDay5Data({});
     setDay6Data({});
     setDay7Data({});
-    if (daysArr.length != 0) {
-      for (let i = 0; i < daysArr.length; i++) {
-        switch (daysArr[i].day) {
+    if (myarr.length != 0) {
+      for (let i = 0; i < myarr.length; i++) {
+        switch (myarr[i].day) {
           case 1:
-            setDay1Data(daysArr[i]);
+            setDay1Data(myarr[i]);
             break;
           case 2:
-            setDay2Data(daysArr[i]);
+            setDay2Data(myarr[i]);
             break;
           case 3:
-            setDay3Data(daysArr[i]);
+            setDay3Data(myarr[i]);
             break;
           case 4:
-            setDay4Data(daysArr[i]);
+            setDay4Data(myarr[i]);
             break;
           case 5:
-            setDay5Data(daysArr[i]);
+            setDay5Data(myarr[i]);
             break;
           case 6:
-            setDay6Data(daysArr[i]);
+            setDay6Data(myarr[i]);
             break;
           case 7:
-            setDay7Data(daysArr[i]);
+            setDay7Data(myarr[i]);
             break;
           default:
             console.log("no schedules");
@@ -156,16 +155,16 @@ export default function TimeManagement(props) {
       <div className="text-lg text-gray-2 text-right py-7 pr-5">
         يرجي إدخال المواعيد بنظام ال 24 ساعة
       </div>
-      <div className="text-lg text-right pt-5 pr-20 bg-blue-1 text-white">
+      {/* <div className="text-lg text-right pt-5 pr-20 bg-blue-1 text-white">
         <button
           onClick={fillDaysArr}
           className="mt-2 text-xl px-3 py-1 rounded bg-green-600 text-white"
         >
           تحديث البيانات
         </button>
-      </div>
+      </div> */}
 
-      <div className="flex flex-wrap justify-between px-16 py-5 text-right bg-blue-1 text-white">
+      <div className="flex flex-wrap justify-between px-16 py-5 text-right text-white">
         {/* ======================================================================= */}
         <form
           onSubmit={async (e) => {
@@ -187,7 +186,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">الإثنين</div>
           <div className="">متاح من الساعة</div>
@@ -230,10 +229,10 @@ export default function TimeManagement(props) {
             {Object.keys(day1Data).length ? (
               <span>
                 <span>متاح من الساعة </span>
-                <span>{day1Data.fromHr}</span>
+                <span className="text-xl">{day1Data.fromHr}</span>
                 <span> إلي </span>
                 <span> الساعة </span>
-                <span>{day1Data.toHr}</span>
+                <span className="text-xl">{day1Data.toHr}</span>
               </span>
             ) : (
               "غير متاح هذا اليوم"
@@ -261,7 +260,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">الأحد</div>
           <div className="">متاح من الساعة</div>
@@ -335,7 +334,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">السبت</div>
           <div className="">متاح من الساعة</div>
@@ -395,7 +394,7 @@ export default function TimeManagement(props) {
       {/* ----------- */}
       {/* ----------- */}
       {/* ----------- */}
-      <div className="flex flex-wrap justify-between px-16 py-5 text-right bg-blue-1 text-white">
+      <div className="flex flex-wrap justify-between px-16 py-5 text-right text-white">
         {/* ======================================================================= */}
         <form
           onSubmit={async (e) => {
@@ -417,7 +416,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">الخميس</div>
           <div className="">متاح من الساعة</div>
@@ -491,7 +490,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">الأربعاء</div>
           <div className="">متاح من الساعة</div>
@@ -566,7 +565,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">الثلاثاء</div>
           <div className="">متاح من الساعة</div>
@@ -626,7 +625,7 @@ export default function TimeManagement(props) {
       {/* ----------- */}
       {/* ----------- */}
       {/* ----------- */}
-      <div className="flex flex-wrap justify-end px-16 py-5 text-right bg-blue-1 text-white">
+      <div className="flex flex-wrap justify-end px-16 py-5 text-right text-white">
         {/* ======================================================================= */}
         <form
           onSubmit={async (e) => {
@@ -648,7 +647,7 @@ export default function TimeManagement(props) {
               await fillDaysArr();
             }
           }}
-          className="flex flex-col w-[25%] rounded-lg m-2 items-end p-2 bg-blue-2"
+          className="dayCardTimeManagement"
         >
           <div className="pb-5 text-lg font-semibold">الجمعة</div>
           <div className="">متاح من الساعة</div>
