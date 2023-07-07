@@ -189,7 +189,7 @@ const SignUp = (props) => {
         mobile: userPhone,
         dept: department,
         address: "طنطا-الغربية",
-        fee: "160",
+        fee: 160,
         desc: description,
         govern: doctorGovern,
       })

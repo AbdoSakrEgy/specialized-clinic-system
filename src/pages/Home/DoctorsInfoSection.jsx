@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "tw-elements";
+import { Icon } from "@iconify/react";
+import RatingDoctors from "./RatingDoctors";
 
-export default function DoctorsInfoSection() {
+export default function DoctorsInfoSection(props) {
   // get medical stuff info from API
   const [medicalStuff, setMedicalStuff] = useState([]);
   useEffect(() => {
@@ -19,6 +21,39 @@ export default function DoctorsInfoSection() {
     medical();
   }, []);
 
+  // convert buffer to base64
+  function _arrayBufferToBase64(buffer) {
+    var binary = "";
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+  // convert base64 to BLOB
+  function base64toBlob(base64Data, contentType) {
+    contentType = contentType || "";
+    var sliceSize = 1024;
+    var byteCharacters = atob(base64Data);
+    var bytesLength = byteCharacters.length;
+    var slicesCount = Math.ceil(bytesLength / sliceSize);
+    var byteArrays = new Array(slicesCount);
+
+    for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+      var begin = sliceIndex * sliceSize;
+      var end = Math.min(begin + sliceSize, bytesLength);
+
+      var bytes = new Array(end - begin);
+      for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
+        bytes[i] = byteCharacters[offset].charCodeAt(0);
+      }
+      byteArrays[sliceIndex] = new Uint8Array(bytes);
+    }
+    return new Blob(byteArrays, { type: contentType });
+  }
+  // convert BLOB to src
+
   return (
     <React.Fragment>
       <div className="h-fit mx-10 pb-40" id="MedicalStaff">
@@ -32,56 +67,66 @@ export default function DoctorsInfoSection() {
             {medicalStuff.map((item) => (
               <div className="DoctorInfoCard">
                 <div className="DoctorInfoCardDiv">
+                  {/* {medicalStuff
+                    ?
+                      //  <img
+                      //   className="w-full h-[15rem] brightness-50"
+                      //   src={require("http://localhost:3000/b4cce032-f5ff-4ae3-8596-e9687c079e00")}
+                      //   alt={"not found"}
+                      // />
+
+                      console.log(
+                        URL.createObjectURL(
+                          base64toBlob(
+                            _arrayBufferToBase64(
+                              item.profileImg.image.data.data
+                            ),
+                            "jpeg"
+                          )
+                        )
+                      )
+                    : "loading..."} */}
+
                   <img
                     className="w-full h-[15rem] brightness-50"
                     src={require("../../Images/d1.jpg")}
                     alt={"not found"}
                   />
+
                   <div className="p-6">
                     <div className="text-black font-bold text-xl mb-8">
                       {medicalStuff ? item.name : "loading..."}
                     </div>
                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">
-                      {medicalStuff ? item.dept.name : "loading..."}
+                      {medicalStuff ? item.dept.name : "loading..."} 
                     </span>
                     <br />
                     <div className="font-bold text-lg mt-5">
                       {item.governorate}
                     </div>
-                    <div className="flex justify-end font-thin mt-3 text-gray-main">
-                      {item.mobile}
+                    <div className="flex justify-end items-center font-thin mt-3 text-gray-main">
+                      {item.generalRate}
+                      <Icon
+                        icon="streamline:interface-favorite-star-reward-rating-rate-social-star-media-favorite-like-stars"
+                        className="ml-2"
+                      />
                     </div>
+                    {/* rate code ============ */}
+                    {!props.userData.hasOwnProperty("desc") ? (
+                      <RatingDoctors
+                        doctorID={item._id}
+                        patientID={props.userData._id}
+                        patientName={props.userData.name}
+                        userData={props.userData}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {/* rate code ============ */}
                   </div>
                 </div>
               </div>
             ))}
-            {/* الطبيب الأول */}
-            {/* <div className="DoctorInfoCard">
-              <div className="DoctorInfoCardDiv">
-                <img
-                  className="w-full h-[15rem] brightness-50"
-                  src={require("../../Images/d1.jpg")}
-                  alt={"not found"}
-                />
-                <div className="p-6">
-                  <div className="text-black font-bold text-xl mb-8">
-                    {medicalStuff ? medicalStuff[0].name : "loading..."}
-                  </div>
-                  <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">
-                    {medicalStuff ? medicalStuff[0].dept.name : "loading..."}
-                  </span>
-                  <br />
-                  <div className="flex justify-end font-bold text-lg mt-5">
-                    <div>مريض</div>
-                    <div className="ml-2">{"2000"}+</div>
-                  </div>
-                  <div className="flex justify-end font-thin mt-3 text-gray-main">
-                    <div>سنة من الخبرة العملية</div>
-                    <div className="ml-1">{"12"}</div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

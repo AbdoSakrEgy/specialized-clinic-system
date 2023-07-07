@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
     "react-router-dom": "^6.4.2",

@@ -79,7 +79,6 @@ export default function AppointmentSection(props) {
   }, [theDate, allSchedulesArr, dayNumber]);
 
   //disable past dates in datepicker
-  console.log("date");
   var date = new Date();
   var tday = date.getDate();
   var tmonth = date.getMonth() + 1;

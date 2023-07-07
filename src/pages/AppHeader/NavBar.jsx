@@ -15,7 +15,7 @@ function NavBar(props) {
           duration={100}
           spy={true}
           spyThrottle={0}
-          offset={-135}
+          offset={-130}
         >
           <Link to="/">
             <div className="logo flex flex-col items-center cursor-pointer text-blue-2">
@@ -34,7 +34,7 @@ function NavBar(props) {
             duration={100}
             spy={true}
             spyThrottle={0}
-            offset={-135}
+            offset={-130}
           >
             <Link to="/">
               <div className="inline-block py-3">من نحن</div>
@@ -48,7 +48,7 @@ function NavBar(props) {
             duration={100}
             spy={true}
             spyThrottle={0}
-            offset={-135}
+            offset={-130}
           >
             <Link to="/">
               <div className="inline-block py-3">الإسعافات الأولية</div>
@@ -62,7 +62,7 @@ function NavBar(props) {
             duration={100}
             spy={true}
             spyThrottle={0}
-            offset={-135}
+            offset={-130}
           >
             <Link to="/">
               <div className="inline-block py-3">الحجز</div>
@@ -76,7 +76,7 @@ function NavBar(props) {
             duration={100}
             spy={true}
             spyThrottle={0}
-            offset={-135}
+            offset={-130}
           >
             <Link to="/">
               <div className="inline-block py-3">الطاقم الطبي</div>
@@ -90,7 +90,7 @@ function NavBar(props) {
             duration={100}
             spy={true}
             spyThrottle={0}
-            offset={-135}
+            offset={-130}
           >
             <Link to="/">
               <div className="inline-block py-3">الخدمات الطبية</div>
@@ -103,7 +103,7 @@ function NavBar(props) {
             duration={100}
             spy={true}
             spyThrottle={0}
-            offset={-135}
+            offset={-130}
           >
             <Link to="/">
               <div className="inline-block py-3">الصفحةالرئيسية</div>
