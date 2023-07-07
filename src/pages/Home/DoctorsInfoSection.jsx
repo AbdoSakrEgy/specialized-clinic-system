@@ -19,6 +19,7 @@ export default function DoctorsInfoSection(props) {
       // setMedicalStuff(response.data.body);
     }
     medical();
+    // console.log(URL.createObjectURL(`data:image/jpeg;base64,${}`));
   }, []);
 
   // convert buffer to base64
@@ -58,7 +59,21 @@ export default function DoctorsInfoSection(props) {
     <React.Fragment>
       <div className="h-fit mx-10 pb-40" id="MedicalStaff">
         <div className="text-center">
-          <div className="text-5xl font-semibold mb-16">
+          <div
+            className="text-5xl font-semibold mb-16"
+            onClick={() => {
+              console.log(
+                URL.createObjectURL(
+                  base64toBlob(
+                    _arrayBufferToBase64(
+                      medicalStuff[0].profileImg.image.data.data
+                    ),
+                    "jpeg"
+                  )
+                )
+              );
+            }}
+          >
             الطاقم <span className="text-blue-1">الطبي</span>
           </div>
         </div>
@@ -67,26 +82,6 @@ export default function DoctorsInfoSection(props) {
             {medicalStuff.map((item) => (
               <div className="DoctorInfoCard">
                 <div className="DoctorInfoCardDiv">
-                  {/* {medicalStuff
-                    ?
-                      //  <img
-                      //   className="w-full h-[15rem] brightness-50"
-                      //   src={require("http://localhost:3000/b4cce032-f5ff-4ae3-8596-e9687c079e00")}
-                      //   alt={"not found"}
-                      // />
-
-                      console.log(
-                        URL.createObjectURL(
-                          base64toBlob(
-                            _arrayBufferToBase64(
-                              item.profileImg.image.data.data
-                            ),
-                            "jpeg"
-                          )
-                        )
-                      )
-                    : "loading..."} */}
-
                   <img
                     className="w-full h-[15rem] brightness-50"
                     src={require("../../Images/d1.jpg")}
@@ -98,7 +93,7 @@ export default function DoctorsInfoSection(props) {
                       {medicalStuff ? item.name : "loading..."}
                     </div>
                     <span className="font-bold text-lg px-3 py-1 rounded-lg bg-[#3b83f638] text-[#3B82F6]">
-                      {medicalStuff ? item.dept.name : "loading..."} 
+                      {medicalStuff ? item.dept.name : "loading..."}
                     </span>
                     <br />
                     <div className="font-bold text-lg mt-5">

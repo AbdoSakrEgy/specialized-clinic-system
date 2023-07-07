@@ -6,24 +6,24 @@ export default function RatingDoctors(props) {
   // isPatientRateThisDoctor
   const [israte, setisrate] = useState(false);
   const [starsNum, setStarsNum] = useState(null);
+
   async function isPatientRateThisDoctor(doctorID, patientName) {
     await axios
       .get("https://egada.vercel.app/doctor/" + doctorID)
       .then((res) => {
         for (let i = 0; i < res.data.body.rating.length; i++) {
           if (res.data.body.rating[i].patient.name === patientName) {
-            console.log("trueeee");
             setisrate(true);
             setStarsNum(res.data.body.rating[i].rate);
             return true;
           }
         }
-        console.log("falseeeee");
         setisrate(false);
         return false;
       })
       .catch((err) => console.log(err));
   }
+
   useEffect(() => {
     isPatientRateThisDoctor(props.doctorID, props.patientName);
   }, [israte]);
@@ -38,9 +38,7 @@ export default function RatingDoctors(props) {
         rate: rateCounter,
         comment: "",
       })
-      .then((res) => {
-        console.log("post rate fn");
-      })
+      .then((res) => {})
       .catch((err) => console.log(err));
   }
 
@@ -87,6 +85,7 @@ export default function RatingDoctors(props) {
             <button
               onClick={async () => {
                 await postRate();
+                await isPatientRateThisDoctor(props.doctorID, props.patientName);
               }}
               className="mt-2 py-2 px-4 rounded shadow-md cursor-pointer bg-blue-1 text-white"
             >
