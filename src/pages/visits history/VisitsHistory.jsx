@@ -10,7 +10,17 @@ export default function VisitsHistory(props) {
     DoneReservation();
     cancledReservation();
     pendingReservation();
+    console.log("doneReservationsArr");
+    console.log(doneReservationsArr);
+    console.log("cancledReservationsArr");
+    console.log(cancledReservationsArr);
+    console.log("pendingReservationsArr");
+    console.log(pendingReservationsArr);
   }, []);
+  window.onload = DoneReservation;
+  window.onload = cancledReservation;
+  window.onload = pendingReservation;
+
   // done reservations
   async function DoneReservation() {
     await axios
@@ -27,7 +37,7 @@ export default function VisitsHistory(props) {
   async function cancledReservation() {
     await axios
       .get(
-        "https://egada.vercel.app/patient/doneReservations/" +
+        "https://egada.vercel.app/patient/cancelledReservations/" +
           props.userData._id
       )
       .then((res) => {

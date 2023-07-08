@@ -20,8 +20,6 @@ export default function VisitsHistoryDoctorView(props) {
       )
       .then((res) => {
         setTodayReservationArr(res.data.body);
-        console.log("getToday");
-        console.log(res.data.body);
       })
       .catch((err) => console.log(err));
   }
@@ -31,34 +29,39 @@ export default function VisitsHistoryDoctorView(props) {
       .get("https://egada.vercel.app/doctor/reservations/" + props.userData._id)
       .then((res) => {
         setReservationArr(res.data.body);
-        console.log("getReserv");
-        console.log(document.getElementById("slectedbtn").checked);
-        console.log(Array.isArray(reservationsArr));
-        console.log(Array.isArray(todayReservationsArr));
-        console.log(res.data.body);
       })
       .catch((err) => {
         console.log(err);
       });
   }
   // handleDone
-  const handleDone = (id) => {
-    axios
+  async function handleDone(id) {
+    await axios
       .put("https://egada.vercel.app/reservation/doneReservation/" + id)
       .then((res) => {
+        console.log("handleDone");
         getReservationsArr();
+        getTodayReservationsArr();
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => {
+        console.log(err);
+        console.log("handleDone error");
+      });
+  }
   // handleCancle
-  const handleCancle = (id) => {
-    axios
+  async function handleCancle(id) {
+    await axios
       .put("https://egada.vercel.app/reservation/cancelledReservation/" + id)
       .then((res) => {
+        console.log("handleCancle");
         getReservationsArr();
+        getTodayReservationsArr();
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => {
+        console.log("handleCancle error");
+        console.log(err);
+      });
+  }
 
   return (
     <React.Fragment>
@@ -76,7 +79,6 @@ export default function VisitsHistoryDoctorView(props) {
                 id="slectedbtn"
                 onClick={(e) => {
                   setSelectedButton(e.target.checked);
-                  console.log(selectedButton);
                 }}
               />
               <span className="slider round"></span>
@@ -128,14 +130,18 @@ export default function VisitsHistoryDoctorView(props) {
                             <tr key={item._id} className="bg-white border-b">
                               <td className="tdStyle flex justify-between">
                                 <button
-                                  onClick={() => handleCancle(item._id)}
+                                  onClick={async () =>
+                                    await handleCancle(item._id)
+                                  }
                                   type="button"
                                   className="rounded-lg p-3 bg-red-600 text-white"
                                 >
                                   إلغاء
                                 </button>
                                 <button
-                                  onClick={() => handleDone(item._id)}
+                                  onClick={async () =>
+                                    await handleDone(item._id)
+                                  }
                                   type="button"
                                   className="rounded-lg p-3 w-[60%] bg-green-600 text-white"
                                 >
@@ -163,14 +169,18 @@ export default function VisitsHistoryDoctorView(props) {
                             <tr key={item._id} className="bg-white border-b">
                               <td className="tdStyle flex justify-between">
                                 <button
-                                  onClick={() => handleCancle(item._id)}
+                                  onClick={async () =>
+                                    await handleCancle(item._id)
+                                  }
                                   type="button"
                                   className="rounded-lg p-3 bg-red-600 text-white"
                                 >
                                   إلغاء
                                 </button>
                                 <button
-                                  onClick={() => handleDone(item._id)}
+                                  onClick={async () =>
+                                    await handleDone(item._id)
+                                  }
                                   type="button"
                                   className="rounded-lg p-3 w-[60%] bg-green-600 text-white"
                                 >
