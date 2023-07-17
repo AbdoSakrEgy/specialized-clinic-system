@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Specialized-Clinic-System/static/css/main.3d179b75.css",
-    "main.js": "/Specialized-Clinic-System/static/js/main.b29b2cc6.js",
-    "static/js/787.223e61a2.chunk.js": "/Specialized-Clinic-System/static/js/787.223e61a2.chunk.js",
+    "main.js": "/Specialized-Clinic-System/static/js/main.4566f671.js",
+    "static/js/787.9a90b09f.chunk.js": "/Specialized-Clinic-System/static/js/787.9a90b09f.chunk.js",
     "static/media/dentist.jpg": "/Specialized-Clinic-System/static/media/dentist.e2c0ada4b490941c3144.jpg",
     "static/media/ENT.jpg": "/Specialized-Clinic-System/static/media/ENT.22b116e22e98bccaa7b5.jpg",
     "static/media/d1.jpg": "/Specialized-Clinic-System/static/media/d1.4cc1d96d3382821a299c.jpg",
@@ -15,11 +15,11 @@
     "static/media/burn.jpg": "/Specialized-Clinic-System/static/media/burn.47f2610c1fff67879bf2.jpg",
     "index.html": "/Specialized-Clinic-System/index.html",
     "main.3d179b75.css.map": "/Specialized-Clinic-System/static/css/main.3d179b75.css.map",
-    "main.b29b2cc6.js.map": "/Specialized-Clinic-System/static/js/main.b29b2cc6.js.map",
-    "787.223e61a2.chunk.js.map": "/Specialized-Clinic-System/static/js/787.223e61a2.chunk.js.map"
+    "main.4566f671.js.map": "/Specialized-Clinic-System/static/js/main.4566f671.js.map",
+    "787.9a90b09f.chunk.js.map": "/Specialized-Clinic-System/static/js/787.9a90b09f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d179b75.css",
-    "static/js/main.b29b2cc6.js"
+    "static/js/main.4566f671.js"
   ]
 }
