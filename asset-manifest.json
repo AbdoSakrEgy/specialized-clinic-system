@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/specialize-clinic-system/static/css/main.3d179b75.css",
-    "main.js": "/specialize-clinic-system/static/js/main.45fa4fad.js",
+    "main.js": "/specialize-clinic-system/static/js/main.d75acf75.js",
     "static/js/787.9a90b09f.chunk.js": "/specialize-clinic-system/static/js/787.9a90b09f.chunk.js",
     "static/media/dentist.jpg": "/specialize-clinic-system/static/media/dentist.e2c0ada4b490941c3144.jpg",
     "static/media/ENT.jpg": "/specialize-clinic-system/static/media/ENT.22b116e22e98bccaa7b5.jpg",
@@ -15,11 +15,11 @@
     "static/media/burn.jpg": "/specialize-clinic-system/static/media/burn.47f2610c1fff67879bf2.jpg",
     "index.html": "/specialize-clinic-system/index.html",
     "main.3d179b75.css.map": "/specialize-clinic-system/static/css/main.3d179b75.css.map",
-    "main.45fa4fad.js.map": "/specialize-clinic-system/static/js/main.45fa4fad.js.map",
+    "main.d75acf75.js.map": "/specialize-clinic-system/static/js/main.d75acf75.js.map",
     "787.9a90b09f.chunk.js.map": "/specialize-clinic-system/static/js/787.9a90b09f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d179b75.css",
-    "static/js/main.45fa4fad.js"
+    "static/js/main.d75acf75.js"
   ]
 }
