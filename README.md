@@ -2,12 +2,12 @@
 
 ### My graduation project
 
-<strong>Project Description:-</strong>
+##### Project Description:-
 Create a website like Vezeeta, which helps doctors market
 themselves and help the user find the nearest doctor and
 make a quick appointment.
 
-<strong>Project goals:-</strong>
+##### Project goals:-
 <ul>
   <li>understand what patient need.</li>
   <li>understand what doctor need.</li>
