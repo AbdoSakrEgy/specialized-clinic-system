@@ -1,16 +1,13 @@
-# specialized-clinic-system <br/>
-<h4>My graduation project</h4> 
+# specialized-clinic-system
 
-<h5>Project Description:-</h5>
-<p>
+### My graduation project
+
+##### Project Description:-
 Create a website like Vezeeta, which helps doctors market
-<br/>
 themselves and help the user find the nearest doctor and
-<br/>
 make a quick appointment.
-</p>
 
-<h5>Project goals:-</h5>
+##### Project goals:-
 <ul>
   <li>understand what patient need.</li>
   <li>understand what doctor need.</li>
