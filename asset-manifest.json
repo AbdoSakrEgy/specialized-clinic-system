@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Specialized-Clinic-System/static/css/main.3d179b75.css",
-    "main.js": "/Specialized-Clinic-System/static/js/main.4566f671.js",
-    "static/js/787.9a90b09f.chunk.js": "/Specialized-Clinic-System/static/js/787.9a90b09f.chunk.js",
-    "static/media/dentist.jpg": "/Specialized-Clinic-System/static/media/dentist.e2c0ada4b490941c3144.jpg",
-    "static/media/ENT.jpg": "/Specialized-Clinic-System/static/media/ENT.22b116e22e98bccaa7b5.jpg",
-    "static/media/d1.jpg": "/Specialized-Clinic-System/static/media/d1.4cc1d96d3382821a299c.jpg",
-    "static/media/Internal Medicine.jpg": "/Specialized-Clinic-System/static/media/Internal Medicine.b579a2a20dea28b3bcf5.jpg",
-    "static/media/landing page image.png": "/Specialized-Clinic-System/static/media/landing page image.b58dac0d32564e1a817b.png",
-    "static/media/test.png": "/Specialized-Clinic-System/static/media/test.46711a5fd75ec16fb0b8.png",
-    "static/media/Appointment.png": "/Specialized-Clinic-System/static/media/Appointment.799f477b1b526ecdcb97.png",
-    "static/media/covid-19.png": "/Specialized-Clinic-System/static/media/covid-19.0816f9266dac986e9d73.png",
-    "static/media/headaches2.jpg": "/Specialized-Clinic-System/static/media/headaches2.a688ad57063041e625d2.jpg",
-    "static/media/burn.jpg": "/Specialized-Clinic-System/static/media/burn.47f2610c1fff67879bf2.jpg",
-    "index.html": "/Specialized-Clinic-System/index.html",
-    "main.3d179b75.css.map": "/Specialized-Clinic-System/static/css/main.3d179b75.css.map",
-    "main.4566f671.js.map": "/Specialized-Clinic-System/static/js/main.4566f671.js.map",
-    "787.9a90b09f.chunk.js.map": "/Specialized-Clinic-System/static/js/787.9a90b09f.chunk.js.map"
+    "main.css": "/specialize-clinic-system/static/css/main.3d179b75.css",
+    "main.js": "/specialize-clinic-system/static/js/main.45fa4fad.js",
+    "static/js/787.9a90b09f.chunk.js": "/specialize-clinic-system/static/js/787.9a90b09f.chunk.js",
+    "static/media/dentist.jpg": "/specialize-clinic-system/static/media/dentist.e2c0ada4b490941c3144.jpg",
+    "static/media/ENT.jpg": "/specialize-clinic-system/static/media/ENT.22b116e22e98bccaa7b5.jpg",
+    "static/media/d1.jpg": "/specialize-clinic-system/static/media/d1.4cc1d96d3382821a299c.jpg",
+    "static/media/Internal Medicine.jpg": "/specialize-clinic-system/static/media/Internal Medicine.b579a2a20dea28b3bcf5.jpg",
+    "static/media/landing page image.png": "/specialize-clinic-system/static/media/landing page image.b58dac0d32564e1a817b.png",
+    "static/media/test.png": "/specialize-clinic-system/static/media/test.46711a5fd75ec16fb0b8.png",
+    "static/media/Appointment.png": "/specialize-clinic-system/static/media/Appointment.799f477b1b526ecdcb97.png",
+    "static/media/covid-19.png": "/specialize-clinic-system/static/media/covid-19.0816f9266dac986e9d73.png",
+    "static/media/headaches2.jpg": "/specialize-clinic-system/static/media/headaches2.a688ad57063041e625d2.jpg",
+    "static/media/burn.jpg": "/specialize-clinic-system/static/media/burn.47f2610c1fff67879bf2.jpg",
+    "index.html": "/specialize-clinic-system/index.html",
+    "main.3d179b75.css.map": "/specialize-clinic-system/static/css/main.3d179b75.css.map",
+    "main.45fa4fad.js.map": "/specialize-clinic-system/static/js/main.45fa4fad.js.map",
+    "787.9a90b09f.chunk.js.map": "/specialize-clinic-system/static/js/787.9a90b09f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d179b75.css",
-    "static/js/main.4566f671.js"
+    "static/js/main.45fa4fad.js"
   ]
 }
