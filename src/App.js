@@ -53,6 +53,25 @@ function App() {
 
             {/* <Route path='/profile' element={<Profile userData={userData} setUserData={setUserData} />} /> */}
           </Route>
+          <Route path="/specialize-clinic-system" element={<AppHeader userData={userData} setUserData={setUserData}/>}>
+            <Route index element={<Home userData={userData} setUserData={setUserData}/>} />
+            
+            <Route path='VisitsHistory' element={<VisitsHistory userData={userData}/>}/>
+            <Route path='VisitsHistoryDoctorView' element={<VisitsHistoryDoctorView userData={userData} setUserData={setUserData}/>}/>
+            
+            <Route path='timeManagement' element={<TimeManagement userData={userData} setUserData={setUserData}/>} />
+            <Route path='ratedoctors' element={<RateDoctors userData={userData} setUserData={setUserData}/>} />
+
+            <Route path='bandAid/breaking' element={<Breaking/>} />
+            <Route path='bandAid/drowing' element={<Drowing/>} />
+            <Route path='bandAid/burn' element={<Burn/>} />
+            <Route path='bandAid/headaches' element={<Headaches/>} />
+
+            <Route path='signup' element={<SignUp userData={userData} setUserData={setUserData}/>} />
+            <Route path='signin' element={<SignIn userData={userData} setUserData={setUserData}/>} />
+
+            {/* <Route path='/profile' element={<Profile userData={userData} setUserData={setUserData} />} /> */}
+          </Route>
         </Routes>
       </BrowserRouter>
     </React.Fragment>

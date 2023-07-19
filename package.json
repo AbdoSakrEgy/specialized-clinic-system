@@ -1,7 +1,7 @@
 {
-  "homepage": "https://AbdoSakrEgy.github.io/specialize-clinic-system",
   "name": "specialize-clinic-system",
   "version": "0.1.0",
+  "homepage": "https://AbdoSakrEgy.github.io/specialize-clinic-system",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
