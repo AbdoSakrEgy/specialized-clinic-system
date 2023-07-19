@@ -1,10 +1,16 @@
 # specialized-clinic-system <br/>
 <h4>My graduation project</h4> 
-<br/><br/>
+
+<br/>
 
 <h5>Project Description:-</h5>
-Create a website like Vezeeta, which helps doctors market themselves and help the user find the nearest doctor and make a quick appointment.
-<br/><br/>
+<p>
+Create a website like Vezeeta, which helps doctors market
+<br/>
+themselves and help the user find the nearest doctor and
+<br/>
+make a quick appointment.
+</p>
 
 <h5>Project goals:-</h5>
 <ul>
@@ -14,5 +20,7 @@ Create a website like Vezeeta, which helps doctors market themselves and help th
 </li>
   <li>move on steps of real work which is used in this field to achieve the best benefits for our families.</li>
 </ul>
-DEMO: https://abdosakregy.github.io/specialize-clinic-system/ 
 
+<br/>
+
+<h4>DEMO: </h4>https://abdosakregy.github.io/specialize-clinic-system/
