@@ -16,7 +16,7 @@ Website like Vezeeta, which helps doctors market themselves and help the user fi
 - A satisfactory record for each patient
 
 ## Technologies
-- React
+- React (Create React App)
 - Tailwind css
 - React router dom
 - RESTful API
