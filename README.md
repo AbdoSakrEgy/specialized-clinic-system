@@ -53,4 +53,4 @@ GitHub is made up of repositories. A repository is a place where all files in a 
     $ npm start
 
 ## DEMO
-https://abdosakregy.github.io/specialize-clinic-system/
+https://specialized-clinic-system.netlify.app/
