@@ -1,6 +1,6 @@
 # specialized-clinic-system
 
-Website like Vezeeta, which helps doctors market themselves and help the user find the nearest doctor and make a quick appointment.
+Online doctor appointment booking system similar to VEZEETA.
 
 ## Project goals
 - understand what patient need.
